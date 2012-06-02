@@ -1,9 +1,17 @@
 $(document).ready(function() {
 
-  var socket = io.connect('http://localhost:3000');
+  var socket = io.connect(window.location.origin);
+
+  $('#watch').click(function() {
+    socket.emit('location', $('#location').val());
+  });
+
+  $('#stop').click(function() {
+    socket.emit('location', null);
+  });
 
   socket.on('tweets', function (data) {
-    console.log(data);
+    $('#tweets').prepend($('<li/>').text(data.text));
   });
 
 });
