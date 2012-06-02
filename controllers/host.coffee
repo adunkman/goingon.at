@@ -24,6 +24,8 @@ app.use require "../services/instagram"
 app.use require "../services/foursquare"
 app.use require "../services/geocode"
 
+app.use require "../services/twitter"
+
 # Controllers
 app.use require "./dashboard"
 app.use require "./test"

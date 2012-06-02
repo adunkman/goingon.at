@@ -1,4 +1,6 @@
 twitter = require('ntwitter')
+express = require "express"
+app = module.exports = express.createServer()
 
 options = 
   consumer_key: 'c3NNk6syXwUqbgwKirtK1w'
@@ -18,6 +20,16 @@ loc_param = heartland.southwest.lng + ',' + heartland.southwest.lat + ',' + hear
 
 t = new twitter(options)
 
+io = require('socket.io').listen(app)
+
+io.on 'connection', (socket) ->
+  socket.on 'location', (location) ->
+    console.log location
+
+app.get '/test/twitter', (req, res) ->
+  res.render 'twitter'
+  
 t.stream 'statuses/filter', locations: loc_param, (s) ->
   s.on 'data', (data) ->  
     console.log data
+
