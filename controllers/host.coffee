@@ -4,7 +4,7 @@ app = express.createServer()
 
 # Settings
 app.set "view engine", "jade"
-app.set "view settings", { layout: false }
+app.set "view options", { layout: false }
 
 app.configure "development", () ->
    app.use express.logger "dev"
@@ -22,9 +22,12 @@ app.use express.static __dirname + "/../public"
 # Services
 app.use require "../services/instagram"
 app.use require "../services/google"
+app.use require "../services/foursquare"
+
 
 # Controllers
 app.use require "./dashboard"
+app.use require "./test"
 
 app.listen port
 console.log "goingon.at listening on #{port}"
