@@ -1,0 +1,18 @@
+extends ../layout
+
+block title
+	| Heartland Golf Club?
+
+block scripts
+	!= js('mapImage')
+	!= js('lib/jquery')
+	script type='text/javascript'
+		$(document).ready(function () {
+			window.mapImage.inject('#img', '38.976924', '-94.5208', { width: 640, height: 480});
+			$('#link').attr('href', window.mapImage.build('38.976924', '-94.5208'))
+		});
+
+block body
+	p Whats up?!?!
+		div#img
+		a#link Click Here!

@@ -25,6 +25,7 @@ app.use require "../services/foursquare"
 
 # Controllers
 app.use require "./dashboard"
+app.use require "./test"
 
 app.listen port
 console.log "goingon.at listening on #{port}"
