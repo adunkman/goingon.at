@@ -22,6 +22,8 @@ app.use express.static __dirname + "/../public"
 # Services
 app.use require "../services/instagram"
 
+app.use require "../services/twitter"
+
 # Controllers
 app.use require "./dashboard"
 
