@@ -19,10 +19,7 @@ class GeoCode
    extractResult: (result) ->
       locations = result.results[0].locations
 
-      console.log locations
-
-      if locations.length == 0
-         null
+      if locations.length == 0 then null
       else
          lat: locations[0].latLng.lat
          lng: locations[0].latLng.lng
