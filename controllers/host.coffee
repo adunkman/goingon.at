@@ -4,7 +4,7 @@ app = express.createServer()
 
 # Settings
 app.set "view engine", "jade"
-app.set "view settings", { layout: false }
+app.set "view options", { layout: false }
 
 app.configure "development", () ->
    app.use express.logger "dev"
