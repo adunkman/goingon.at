@@ -9,3 +9,9 @@ app.get "/foursquare", (req, res, next) ->
       (error, data) ->
          return next error if error
          res.json data
+
+app.get "/geocode/:address", (req, res, next) ->
+	req.services.geocode.lookup req.params.address, 
+		(error, data) ->
+			return next error if error
+			res.json data
