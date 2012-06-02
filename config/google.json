@@ -5,7 +5,6 @@
     "method": "search",
     "defaults": {
       "location": "38.980563,-94.520767",
-      "rankby": "distance",
       "radius": "500",
       "sensor": "false"
     }
@@ -13,7 +12,7 @@
   "placeDetails": {
     "method":"details",
     "defaults": {
-      "reference": "CoQBcQAAAHXNoLhdfwWkY7tAGxGMP99BlmkehiyWq_Osp9iaXAc1ftKKCgKMnix9sZvUb6Rr6V_l6o7vVtNLeuEiY021IQpaED1ODdiYq84wS9qmWMz4wxbUs0EvEF7_1yDaHL-OlRO4o85JVYTe4I2He9iFPPzvoqnX8eioxk4eIUCRjsJ5EhBssDOwawwlVlnY49SqBbEoGhSGnaQyUMBe_9y6cN-dSqIAxRSNFg",
+      "reference": "CoQBdAAAAPZ-6UNytDLaZFUi5g1y96CkLJlPj_jRCPf6zLvKVXAkUKOybedqYrORfFHOrPtORtPD0MSQP114JtwcVBEHsyz4WPGapHYFig9512Csq0z4jDKRTnAexRSRQI68OJVNSYZQrgvY4tK2Z--Miv0qFh0Cr1r1UJAQLvF7sg9kb2iKEhBNnRWiiAC9JP4x7iwnHTAAGhR9_nnY-1XWe8iw3SSyTG1Cm2fbqA",
       "sensor": "false"
     }
   }

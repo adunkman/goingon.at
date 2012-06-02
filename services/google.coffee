@@ -4,7 +4,6 @@ _ = require "underscore"
 rest = require "restler"
 config = require "../config/google"
 
-
 class Google
    constructor: () ->
       # do some junk
