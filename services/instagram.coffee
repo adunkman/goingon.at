@@ -8,7 +8,6 @@ class Instagram
       url = config["base-url"] + (if url.substring(0,1) == "/" then url else "/#{url}")
       rest.get(url, data)
       .on "complete", (result) ->
-         console.log JSON.stringify(result)
          if result instanceof Error then callback(result)
          else callback(null, result)
 
@@ -17,7 +16,7 @@ class Instagram
          callback = arguments[2]
          range = config["search-radius"]
 
-      this.get config["media-search"],
+      @get config["media-search"],
          query:
             lat: lat
             lng: lng
