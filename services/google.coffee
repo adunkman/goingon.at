@@ -33,13 +33,13 @@ class Google
          else callback(null, result)
    
    places: ( callType, params, callback ) ->
-      defaults = key: config.key
       url = config.base_url+'/'+callType+'/json'
       switch callType
          when "search" then defaults = config.placeSearch.defaults
          when "detail" then defaults = config.placeDetails.defaults
          else null
-      params = _.extend {}, defaults, params
+      params = _.extend defaults, {key: config.key}, params
+      
       this.get url, 
          query: params, 
          (error, data) ->
