@@ -5,6 +5,7 @@
     "method": "search",
     "defaults": {
       "location": "38.980563,-94.520767",
+      "rankby": "distance",
       "radius": "500",
       "sensor": "false"
     }
