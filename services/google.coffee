@@ -1,17 +1,3 @@
-###
-Street-view:
-   http://maps.googleapis.com/maps/api/streetview?size=400x400&location=40.720032,%20-73.988354&fov=90&heading=235&pitch=10&sensor=false&key=AIzaSyDmvGliUS1OmEHzFE6ADNhuwO-eVQ-znsw
-BOUNDS
-   northeast": {
-   "lat": 39.356662,
-   "lng": -94.385522
-   },-
-   "southwest": {
-   "lat": 38.827176,
-   "lng": -94.765917
-   }
-###
-
 express = require "express"
 app = module.exports = express.createServer()
 _ = require "underscore"
