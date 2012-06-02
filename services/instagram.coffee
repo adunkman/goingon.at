@@ -1,26 +1,43 @@
 express = require "express"
 app = module.exports = express.createServer()
 config = require "../config/instagram"
+rest = require "restler"
 
 class Instagram
    constructor: () ->
+
       # do some junk
 
-   get: (url, callback) ->
-      # this is a call to the instagram API
+   get: (url, data, callback) ->
+      url = config["base-url"] + (if url.substring(0,1) == "/" then url else "/#{url}")
+      rest.get(url, data)
+      .on "complete", (result) ->
+         console.log JSON.stringify(result)
+         if result instanceof Error then callback(result)
+         else callback(null, result)
+
+   getImages: (lat, lng, range, callback) ->
+      if arguments.length < 4
+         callback = arguments[2]
+         range = config["search-radius"]
+
+      this.get config["media-search"],
+         query:
+            lat: lat
+            lng: lng
+            client_id: config["client-id"]
+            distance: range
+         (error, data) ->
+            callback error, data
 
 instagram = new Instagram()
 
-app.get "/auth/instagram", () ->
-   res.redirect "to the place"
-
-app.get "/auth/instagram_callback", () ->
-   # do some junk to get the access token
+# Used to test
+app.get "/test/instagram", (req, res) ->
+   instagram.getImages 38.980563, -94.520767, (error, data) ->
+      res.json data
 
 app.use (req, res, next) ->
-   # Your middleware peice
-      keys = req.session.services?.instagram
-      instagram.access_token = keys?.access_token
-
    req.services or= {}
    req.services.instagram = instagram
+   next()
