@@ -1,0 +1,24 @@
+{
+   "author": "Andrew Dunkman, Blake VanLandingham, Dusty Burwell, Joe Andaverde, Russell Madsen",
+   "name": "goingon.at",
+   "version": "0.0.0",
+   "homepage": "http://goingon.at",
+   "repository": {
+      "type": "git",
+      "url": "git://github.com/adunkman/goingon.at.git"
+   },
+   "main": "index.js",
+   "dependencies": {
+      "express": "2.5.9",
+      "connect-assets": "2.2.1",
+      "jade": "0.26.1",
+      "coffee-script": "1.3.3",
+      "restler": "2.0.1",
+      "async": "0.1.22"
+   },
+   "devDependencies": {},
+   "optionalDependencies": {},
+   "engines": {
+      "node": "0.6.18"
+   }
+}
