@@ -8,6 +8,7 @@ app.use express.session secret: "aksdf2342awjefna3fnoiasdfojasofoadngfiha34isfh"
 app.use require("connect-assets")()
 
 # Services
+app.use require "../services/instagram"
 
 # Controllers
 app.use require "./dashboard"
