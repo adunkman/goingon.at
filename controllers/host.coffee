@@ -19,10 +19,14 @@ app.use express.session secret: "aksdf2342awjefna3fnoiasdfojasofoadngfiha34isfh"
 app.use require("connect-assets")()
 app.use express.static __dirname + "/../public"
 
+io = require('socket.io').listen(app)
+
+io.configure 'development', () ->
+  io.set 'log level', 1
+
 # Services
 app.use require "../services/instagram"
-
-app.use require "../services/twitter"
+app.use require("../services/twitter")(io)
 
 # Controllers
 app.use require "./dashboard"

@@ -1,4 +1,13 @@
-script(src='/socket.io/socket.io.js')
-script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js", type="text/javascript")
-script(src="/js/twitter.js", type="text/javascript")
-    
+block append scripts
+   script(src='/socket.io/socket.io.js')
+   script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js", type="text/javascript")
+   != js("twitter")
+
+block body
+   input#location(type='text', name='location') 
+
+   button#watch(type='submit')
+      |watch
+
+   ul#tweets
+
