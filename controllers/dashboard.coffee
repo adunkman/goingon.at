@@ -74,15 +74,12 @@ app.get "/place/:name/:id", ( req, res, next ) ->
          return next error if error
          p = place.result.geometry.location
 
-         console.log place
-
          res.render "stream", 
             coords: { lat: p.lat, long: p.lng },
             place: 
                name: place.result.name
                website: place.result.website
-               address: place.result.formatted_address
-               vicinity: place.result.vicinity
+               address: place.result.formatted_address || place.result.vicinity
                number: place.result.formatted_phone_number
 
 app.get "/geocode/:address", (req, res, next) ->

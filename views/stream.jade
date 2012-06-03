@@ -2,18 +2,36 @@ extends layout
 
 block append scripts 
    != js("pages/stream")
+   != js("mapImage")
 
    script
       window.coords = !{JSON.stringify(coords)};
 
 block body
    .location-header
-      h1 goingon.at
       if place
-         a(data-bind="click: function () { showMenu(true); }")
+         a(data-bind="click: function () { showMenu(!showMenu()); }")
             h2.menu #{place.name}
       else
          h2 Your location
+      h1 goingon.at
+
+   .place-info(data-bind="visible: showMenu")
+      img(data-bind="attr: { src: window.mapImage.build(#{coords.lat}, #{coords.long}, { width: 300, height: 300, zoom: 15 }) }").map
+
+      h1= place.name
+
+      ul.things 
+         if place.website
+            li.website
+               a(href=place.website)= place.website
+         if place.address
+            li.address= place.address
+         if place.number
+            li.number
+               a(href="tel:#{place.number}")= place.number
+
+      .clear
 
    ol(data-bind="foreach: strips")
       li(data-bind="template: { name: type }")

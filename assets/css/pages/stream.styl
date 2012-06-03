@@ -8,11 +8,58 @@ body.stream
       border-bottom: 1px #aaa solid
 
       h1 
-         float: left
-         color: #999
+         color: #777
 
       h2 
-         text-align: right
+         float: right
+
+         &.menu
+            cursor: pointer
+            padding-right: 30px
+            background: url("/images/list.png") no-repeat right 1px
+            background-size: 20px 20px
+
+   .place-info
+      padding: 20px
+
+      color: #fff
+      background-gradient: #222 #333
+      text-shadow: 1px 1px 1px #000
+
+      .map
+         float: right
+         padding: 1px 
+
+         background-color: #fff
+         border: 1px #999 solid
+
+         width: 150px
+         height: 150px
+
+      h1
+         font-size: 1.4em
+         line-height: 1.5em
+         margin-bottom: 10px
+
+      .things
+         .website, .address, .number
+            padding-left: 30px
+            line-height: 30px
+            background-repeat: no-repeat
+            background-position: left 5px
+            background-size: 20px 20px
+
+            a
+               color: #fff
+
+         .website
+            background-image: url("/images/globe.png")
+
+         .address
+            background-image: url("/images/map.png")
+         
+         .number
+            background-image: url("/images/phone.png")
 
    .instagroto, .tweet
       display: block
