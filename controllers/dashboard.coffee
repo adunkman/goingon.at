@@ -9,12 +9,6 @@ app.get "/me", (req, res) ->
 
 
 #=== SERVICES ===
-app.get "/geocode/:address", (req, res, next) ->
-   req.services.geocode.lookup req.params.address, 
-      (error, data) ->
-         return next error if error
-         res.json data
-
 app.get "/photos", (req, res) ->
    lat = req.query.lat
    lon = req.query.lon
@@ -35,3 +29,14 @@ app.get "/places", (req, res, next) ->
          return next error if error
          res.json data
 
+app.get "/geocode/:address", (req, res, next) ->
+	req.services.geocode.lookup req.params.address, 
+		(error, data) ->
+			return next error if error
+			res.json data
+
+app.get "/geocode", (req, res, next) ->
+	req.services.geocode.reverse "38.980563", "-94.520767",
+		(error, data) ->
+			return next error if error
+			res.json data
