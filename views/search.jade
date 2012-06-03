@@ -13,7 +13,7 @@ block body
          .input-container
             input(type="text", data-bind="value: query", placeholder="Enter a location…")
    
-   .your-location
+   .your-location(data-bind="if: position")
       a(data-bind="click: location_click")
          img.name(src="/images/location.png")
          span.name None of these
