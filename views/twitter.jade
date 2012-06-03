@@ -1,0 +1,13 @@
+block append scripts
+   script(src='/socket.io/socket.io.js')
+   != js("lib/jquery")
+   != js("twitter")
+
+block body
+   input#location(type='text', name='location') 
+
+   button#watch(type='submit')
+      |watch
+
+   ul#tweets
+

@@ -35,3 +35,9 @@ app.get "/geocode/:address", (req, res, next) ->
 		(error, data) ->
 			return next error if error
 			res.json data
+
+app.get "/geocode", (req, res, next) ->
+	req.services.geocode.reverse "38.980563", "-94.520767",
+		(error, data) ->
+			return next error if error
+			res.json data

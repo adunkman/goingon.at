@@ -11,7 +11,6 @@ getClientIp =  (req) ->
 
 class GeoPoint
    get: (req, callback) ->
-      console.log getClientIp req
       url = "http://api.quova.com/v1/ipinfo/" + getClientIp req
       hash = crypto.createHash "md5"
       hash.update config["apiKey"], "utf8"
