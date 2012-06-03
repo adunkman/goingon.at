@@ -3,6 +3,15 @@ LocationStreamer = require './location_streamer'
 geocode = require('./geocode').geocode
 rest = require('restler')
 
+class Twitter 
+  getTweets: (lat, long, range, callback) ->
+    rest.get 'http://search.twitter.com/search.json', 
+      query:
+        q: '*'
+        geocode: "#{lat},#{long},.25km"
+    .on 'complete', (data) ->
+      callback null, data.results
+
 registerRoutes = (app) ->
   app.get '/test/twitter', (req, res) ->
     res.render 'twitter'     
@@ -15,7 +24,6 @@ isWithinBounds = (bounds, p) ->
   return withinX && withinY
 
 handleTweets = (socket, location, data) ->
-
   if !data.geo 
     return
 
@@ -34,14 +42,6 @@ handleTweets = (socket, location, data) ->
   if isWithinBounds bounds, point
     socket.emit 'tweets', [data]
 
-fetchPastTweets = (location, callback) ->
-  rest.get 'http://search.twitter.com/search.json', 
-    query:
-      q: '*'
-      geocode: "#{location.primary.lat},#{location.primary.lng},.25km"
-  .on 'complete', (data) ->
-    callback null, data.results
-
 module.exports = (io) -> 
   sockets = {}
   streamer = new LocationStreamer()
@@ -57,8 +57,6 @@ module.exports = (io) ->
       if location?
         geocode.lookup location, (err, result) ->
           socket.set 'location', result
-          fetchPastTweets result, (err, data) ->
-            socket.emit 'tweets', data
           streamer.addLocation result         
           sockets[socket.id] = socket
       else
@@ -68,5 +66,8 @@ module.exports = (io) ->
       delete sockets[socket.id]
 
   app = express.createServer()
+
+  app.services or= {}
+  app.services.twitter = new Twitter()
 
   return registerRoutes app
