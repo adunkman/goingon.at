@@ -24,33 +24,29 @@ app.get "/foursquare", (req, res, next) ->
 
 app.get "/places", (req, res, next) ->
    ll = req.query.lat+','+req.query.lon
-   console.log ll
    req.services.google.places "search",
       location: ll
       (error, data) ->
-         console.log data
          res.json data
 
-app.get "/places/:address", (req, res, next) ->
-  req.services.geocode.lookup req.params.address, 
-      (error, data) ->
-         return next error if error
-         location = [ data.primary.lat, data.primary.lng ]
-         console.log data, location
-         req.services.google.places "search",
-            location: location.join ','
-            (error, result) ->
-               console.log result
-               res.json result
-
 app.get "/places/details", (req, res, next) ->
-   reference = req.query
-   console.log reference
+   reference = req.query.reference
+   console.log '/places/details', reference
    req.services.google.places "detail",
       reference: reference
       (error, data) ->
          console.log data
          res.json data
+         
+app.get "/places/search/:address", (req, res, next) ->
+  req.services.geocode.lookup req.params.address, 
+      (error, data) ->
+         return next error if error
+         location = [ data.primary.lat, data.primary.lng ]
+         req.services.google.places "search",
+            location: location.join ','
+            (error, result) ->
+               res.json result
 
 app.get "/geocode/:address", (req, res, next) ->
 	req.services.geocode.lookup req.params.address, 

@@ -6,15 +6,14 @@ default_places = []
 viewModel = 
    places: ko.observable()
    query: ko.observable()
-   place_li_click: () ->
-      console.log( "clicked", this )
-      data = this.geometry.location
-      $.getJSON '/places/details', data, ( res ) ->
-         console.log res.results
-   geocode_search: ( el )->
+   place_li_click: ( el ) ->
+      console.log this
+      $.getJSON '/places/details', this, ( res, a, b ) ->
+         console.log res, a, b
+   geocode_search: ( el ) ->
       #event.preventDefault()
       console.log this, el, event
-      url = 'places/'+viewModel.query()
+      url = '/places/search/'+encodeURI( viewModel.query() )
       $.getJSON url, ( res ) ->
          viewModel.places clean_places( res )
          
