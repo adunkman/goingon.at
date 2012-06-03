@@ -1,9 +1,18 @@
 html
    head
+      meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1")
+
       title What's going on at 
          block title
-            Somewhere
+            |Somewhere
+
+      block styles
+         != css("pages/stream")
 
       block scripts
+         != js("lib/jquery")
+         != js("lib/knockout")
+         != js("lib/underscore")
+
    body
       block body

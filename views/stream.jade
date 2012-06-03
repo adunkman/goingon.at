@@ -1,0 +1,23 @@
+extends layout
+
+block append scripts 
+   != js("pages/stream")
+
+   script
+      window.coords = !{JSON.stringify(coords)};
+
+block body
+   .location-header
+      .back
+      h1 Location
+      .info
+
+   ul.things(data-bind="foreach: strips")
+      li(data-bind="template: { name: type }")
+
+   script(type="text/html", id="instagroto")
+      a(data-bind="attr: { href: link }")
+         img(data-bind="attr: { src: images.standard_resolution.url }")
+
+   script(type="text/html", id="tweet")
+      p(data-bind="text: text")
