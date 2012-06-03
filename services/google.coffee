@@ -20,15 +20,17 @@ class Google
       url = this.config.base_url+"/"+callType+"/json"
       #url = "http://shitfuck.com/"+callType+"/json"
       switch callType
-         when "search" then defaults = this.config.placeSearch.defaults
+         when "search"
+            defaults = _.clone( this.config.placeSearch.defaults )
+            defaults.types = defaults.types.join '|' 
          when "detail" then defaults = this.config.placeDetails.defaults
          else null
       params = _.extend defaults, {key: this.config.key}, params
       this.get url, 
          query: params, 
          (error, data) ->
-            result = {error:error, url:url, params:params, data:data }
-            callback error, result
+            console.log( 'your interwebs died! damn network' )
+            callback error, data
 
 google = new Google()
 app.use (req, res, next) ->

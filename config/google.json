@@ -5,8 +5,33 @@
       "method": "search",
       "defaults": {
          "location": "38.980563,-94.520767",
-         "radius": "500",
-         "sensor": "false"
+         "rankby":"distance",
+         "sensor": "false",
+         "types":[
+            "airport",
+            "amusement_park",
+            "aquarium",
+            "art_gallery",
+            "bar",
+            "book_store",
+            "bowling_alley",
+            "cafe",
+            "campground",
+            "casino",
+            "church",
+            "library",
+            "mosque",
+            "movie_theater",
+            "museum",
+            "night_club",
+            "park",
+            "place_of_worship",
+            "school",
+            "shopping_mall",
+            "stadium",
+            "synagogue",
+            "university",
+            "zoo" ]
       }
    },
    "placeDetails": {
