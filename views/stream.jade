@@ -39,8 +39,8 @@ block body
 
       #poop
       span(data-bind="with: tweet()")
-         a(data-bind="attr: { href: 'http://twitter.com/' }").tweet.live
-            h1 Live Stream
+         a.tweet.live
+            h1 Streaming Live
             p(data-bind="text: text")
 
       ol(data-bind="foreach: strips")
