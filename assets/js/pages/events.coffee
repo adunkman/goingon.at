@@ -7,12 +7,11 @@ viewModel =
    places: ko.observable()
    query: ko.observable()
    place_li_click: ( el ) ->
-      console.log this
-      $.getJSON '/places/details', this, ( res, a, b ) ->
-         console.log res, a, b
+      url = '/places/details/'+self.reference
+      $.getJSON url, ( res ) -> 
+         console.log url, res
+      
    geocode_search: ( el ) ->
-      #event.preventDefault()
-      console.log this, el, event
       url = '/places/search/'+encodeURI( viewModel.query() )
       $.getJSON url, ( res ) ->
          viewModel.places clean_places( res )

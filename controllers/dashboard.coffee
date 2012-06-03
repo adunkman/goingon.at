@@ -29,14 +29,12 @@ app.get "/places", (req, res, next) ->
       (error, data) ->
          res.json data
 
-app.get "/places/details", (req, res, next) ->
-   reference = req.query.reference
-   console.log '/places/details', reference
-   req.services.google.places "detail",
+app.get "/places/details/:id", (req, res, next) ->
+   reference = req.params.id
+   req.services.google.places "details",
       reference: reference
       (error, data) ->
-         console.log data
-         res.json data
+         res.json data.result
          
 app.get "/places/search/:address", (req, res, next) ->
   req.services.geocode.lookup req.params.address, 
