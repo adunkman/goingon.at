@@ -3,6 +3,7 @@ ko = window.ko
 viewModel = 
    instagrotos: ko.observable([])
    tweets: ko.observable([])
+   showMenu: ko.observable(false)
 
 viewModel.strips = ko.computed () ->
    items = (_.map viewModel.instagrotos(), (instagroto) -> 

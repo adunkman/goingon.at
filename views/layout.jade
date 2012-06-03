@@ -29,7 +29,8 @@ html
    body(class=viewClass)
       .location-header
          h1 goingon.at
-         if (typeof place == undefined)
+         
+         if (typeof place !== "undefined")
             a(data-bind="click: function () { showMenu(true); }")
                h2.menu #{place.name}
          else
