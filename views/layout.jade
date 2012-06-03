@@ -1,18 +1,29 @@
+doctype 5
 html
    head
       meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1")
+      link(rel="shortcut icon", href="/favicon.ico")
 
-      title What's going on at 
+      title What’s going on
          block title
-            |Somewhere
+            |?
 
       block styles
+         != css("skin")
          != css("pages/stream")
+         != css("pages/search")
 
       block scripts
          != js("lib/jquery")
          != js("lib/knockout")
          != js("lib/underscore")
 
-   body
+         != js("ext/bindingHandlers")
+         != js("skin")
+   
+   - var viewFile = locals.attempts[locals.attempts.length - 1];
+   - var viewDir = locals.root + "/";
+   - var view = viewFile.replace(viewDir, "").replace(".jade", "");
+   - var viewClass = view.replace(/\//g, "-");
+   body(class=viewClass)
       block body
