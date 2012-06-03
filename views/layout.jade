@@ -1,9 +1,25 @@
+doctype 5
 html
    head
-      title What's going on at 
+      link(rel="shortcut icon", href="/favicon.ico")
+
+      title What’s going on
          block title
-            Somewhere
+            |?
+
+      block styles
+         != css("skin")
+         != css("pages/search")
 
       block scripts
-   body
+         != js("lib/jquery")
+         != js("lib/knockout")
+         != js("ext/bindingHandlers")
+         != js("skin")
+   
+   - var viewFile = locals.attempts[locals.attempts.length - 1];
+   - var viewDir = locals.root + "/";
+   - var view = viewFile.replace(viewDir, "").replace(".jade", "");
+   - var viewClass = view.replace(/\//g, "-");
+   body(class=viewClass)
       block body
