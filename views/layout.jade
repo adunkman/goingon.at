@@ -27,4 +27,12 @@ html
    - var view = viewFile.replace(viewDir, "").replace(".jade", "");
    - var viewClass = view.replace(/\//g, "-");
    body(class=viewClass)
+      .location-header
+         h1 goingon.at
+         if (typeof place == undefined)
+            a(data-bind="click: function () { showMenu(true); }")
+               h2.menu #{place.name}
+         else
+            h2 Your location
+
       block body

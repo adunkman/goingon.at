@@ -7,14 +7,7 @@ block append scripts
       window.coords = !{JSON.stringify(coords)};
 
 block body
-   .location-header
-      h1 goingon.at
-      if place
-         a(data-bind="click: function () { showMenu(true); }")
-            h2.menu #{place.name}
-      else
-         h2 Your location
-
+   
    ol(data-bind="foreach: strips")
       li(data-bind="template: { name: type }")
 
