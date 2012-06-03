@@ -4,10 +4,13 @@ block append scripts
    != js("pages/search")
 
 block body
+   .map(data-bind="map: true")
+
    .search-bar
       form(action="/lattylongie", method="get")
          .input-box
-            .text What’s going on at
+
+            .text What’s going on at&nbsp;
             .input-container
                input(type="text", name="coords")
             .text ?
@@ -15,9 +18,8 @@ block body
             button(type="submit")
                span Discover
 
-   .poop-the-giraffe
-
    .cityscape
-      .background(data-bind="parallax: { x: { 'background-position-x': 0.06 }, y: { 'height': -0.01 } }")
+      .background(data-bind="parallax: { x: { 'background-position-x': 0.06 }, y: { 'height': -0.02 } }")
       .middleground(data-bind="parallax: { x: { 'background-position-x': 0.03 }, y: { 'height': -0.01 } }")
-      .foreground(data-bind="parallax: { x: { 'background-position-x': 0.01 }, y: { 'height': -0.01 } }")
+      .poop-the-giraffe(data-bind="parallax: { x: { 'left': 0.02 }, y: { 'height': -0.005 } }")
+      .foreground(data-bind="parallax: { x: { 'background-position-x': 0.01 } }")

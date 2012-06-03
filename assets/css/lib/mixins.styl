@@ -1,4 +1,3 @@
-// background transparency
 background-transparency(color, alpha = 1)
   ms-color = argb(color, alpha)
   background rgb(color)
@@ -18,22 +17,10 @@ hex(decimal)
 argb(color, alpha = 1)
   unquote('#') + hex(alpha * 255) + hex(red(color)) + hex(green(color)) + hex(blue(color))
 
-border-radius(radius) 
-   -webkit-border-radius: radius;
-   -moz-border-radius: radius;
-   border-radius: radius;
-
 box-shadow(shadow)
    -webkit-box-shadow: shadow
    -moz-box-shadow: shadow
    box-shadow: shadow
-
-transition(transition)
-   -webkit-transition: transition
-   -moz-transition: transition
-   -ms-transition: transition
-   -o-transition: transition
-   transition: transition
 
 background-gradient(startColor = #555, endColor = #333)
    background-color: mix(startColor, endColor, 60%)
@@ -45,3 +32,15 @@ background-gradient(startColor = #555, endColor = #333)
    background-image: linear-gradient(top, startColor, endColor) // The standard
    background-repeat: repeat-x
    filter s('progid:DXImageTransform.Microsoft.gradient(startColorstr=%s,endColorstr=%s)', argb(startColor), argb(endColor))
+
+transition(args...)
+   -webkit-transition: args
+   -moz-transition: args
+   -o-transition: args
+   -ms-transition: args
+   transition: args
+
+border-radius(radius)
+   -webkit-border-radius: radius
+   -moz-border-radius: radius
+   border-radius: radius
