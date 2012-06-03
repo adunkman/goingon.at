@@ -26,7 +26,7 @@ class GeoCode
          alts:
             {lat: loc.latLng.lat, lng: loc.latLng.lng} for loc in locations[1..locations.length]
 
-geocode = new GeoCode()
+geocode = app.geocode = new GeoCode()
 
 app.use (req, res, next) ->
    req.services or= {}

@@ -15,20 +15,23 @@ class LocationStreamer extends EventEmitter
     @stream = undefined
 
   addLocation: (location) ->
-    @locations.push location
+    lat = location.lat
+    lng = location.lng
+    key = "#{lng},#{lat}"
+    
+    @locations.push key
 
     if !@listening
       @start()
     else
       @restart()
+
+    return key
   
-  removeLocation: (location) ->
-    index = @locations.indexOf location
-
-    console.log 'removing location ' + location + ' at index ' + index
-    
-    @locations.splice index, 1  
-
+  removeLocation: (key) -> 
+    index = @locations.indexOf key
+    @locations.splice index, 1
+    console.log @locations
     @stop() if @locations.length == 0
   
   stop: ->
@@ -41,15 +44,16 @@ class LocationStreamer extends EventEmitter
     @listening = false
     
   start: ->
-    console.log 'starting streamer'
+    console.log 'starting streamer ' + @locations.join()
     
     @twitter = new twitter(options)
-    
+
     @twitter.stream 'statuses/filter', locations: @locations.join(), (s) =>
       
       @stream = s     
       
       s.on 'data', (data) =>
+        console.log data
         @emit 'data', data
 
       s.on 'end', (r) =>

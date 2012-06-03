@@ -20,15 +20,14 @@ app.use require("connect-assets")()
 app.use express.static __dirname + "/../public"
 
 io = require('socket.io').listen(app)
-
 io.configure 'development', () ->
   io.set 'log level', 1
 
 # Services
 app.use require "../services/instagram"
 app.use require "../services/foursquare"
-app.use require("../services/twitter")(io)
 app.use require "../services/geocode"
+app.use require("../services/twitter")(io)
 
 # Controllers
 app.use require "./dashboard"
