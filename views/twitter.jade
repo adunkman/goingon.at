@@ -1,12 +1,16 @@
 block append scripts
+   #meta(http-equiv="refresh", content="1")
+
    script(src='/socket.io/socket.io.js')
    != js("lib/jquery")
    != js("twitter")
+   != css("pages/twitter")
+
 
 block body
-  style
 
   #poop
     #speech
       p Did you know giraffes poop more than they eat in a day?
-        span.time_ago 2 minutes ago 
+      span.tweeter @joeandaverde
+      
