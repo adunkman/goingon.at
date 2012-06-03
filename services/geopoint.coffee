@@ -4,9 +4,15 @@ config = require "../config/geopoint"
 rest = require "restler"
 crypto = require "crypto"
 
+getClientIp =  (req) ->
+   forwardedIps = req.header "x-forwarded-for"
+   if forwardedIps? then forwardedIps.split(",")[0]
+   else req.connection.remoteAddress
+
 class GeoPoint
-   get: (ip, callback) ->
-      url = "http://api.quova.com/v1/ipinfo/" + ip
+   get: (req, callback) ->
+      console.log getClientIp req
+      url = "http://api.quova.com/v1/ipinfo/" + getClientIp req
       hash = crypto.createHash "md5"
       hash.update config["apiKey"], "utf8"
       hash.update config["sharedSecret"], "utf8"
@@ -33,7 +39,7 @@ geopoint = new GeoPoint()
 
 # Used to test
 app.get "/test/geopoint", (req, res) ->
-   geopoint.get "173.118.123.199", (error, data) ->
+   geopoint.get req, (error, data) ->
       res.json data
 
 app.use (req, res, next) ->
