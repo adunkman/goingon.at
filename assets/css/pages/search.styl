@@ -31,13 +31,14 @@ body.search
             background-size: 20px 20px
 
       .input-container
-         margin-right: 10px + 100px
+         margin-right: 10px + 50px
 
          input
             background: transparent
             border: 0 none
             color: #fff
             text-shadow: 1px 1px 1px #000
+            -webkit-appearance: none
 
             font-size: 2em
 
@@ -47,6 +48,9 @@ body.search
             &:active,
             &:focus
                outline: 0 none
+
+            @media (-webkit-min-device-pixel-ratio: 2)
+               font-size: 1.7em
 
    .your-location
       border-top: 1px solid #bbb
