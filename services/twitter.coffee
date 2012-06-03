@@ -37,8 +37,8 @@ handleTweets = (socket, location, data) ->
       x: location.primary.boundingBox.northeast.lng
       y: location.primary.boundingBox.northeast.lat
 
-  if isWithinBounds bounds, point
-    socket.emit 'tweets', [data]
+  #if isWithinBounds bounds, point
+  socket.emit 'tweets', [data]
 
 module.exports = (io) -> 
   sockets = {}
@@ -52,7 +52,7 @@ module.exports = (io) ->
   io.on 'connection', (socket) ->
     socket.on 'location', (location) ->
       if location?
-        geocode.lookup location, (err, result) ->
+        geocode.lookup '8200 hillcrest, kansas city mo', (err, result) ->
           socket.set 'location', result
           streamer.addLocation result         
           sockets[socket.id] = socket

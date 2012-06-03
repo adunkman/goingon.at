@@ -25,8 +25,6 @@ viewModel =
       if this.live_tweets.length > 0 
          t = this.live_tweets.shift()
          this.tweet t
-      else 
-         this.tweet pickRandomQuote()
 
 viewModel.strips = ko.computed () ->
    items = (_.map viewModel.instagrotos(), (instagroto) -> 
