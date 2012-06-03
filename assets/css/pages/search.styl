@@ -2,66 +2,82 @@
 
 body.search
 
-   .map
-      position: absolute
-      top: 0
-      left: 0
-      width: 100%
-      height: 100%
-      background-color: #888
+   form.search
+      display: block
+      padding: 20px 20px 25px 20px
 
-   .search-bar
-      position: absolute
-      top: 10%
-      width: 100%
-      text-align: center
+      color: #fff
+      background-gradient: #222 #333
+      text-shadow: 1px 1px 1px #000
 
-      background-color: rgba(150, 150, 150, 0.5)
-
-      .input-box
-         display: inline-block
-         font-family: 'Voltaire', sans-serif
-         margin: 1.7em
-         vertical-align: text-bottom
-
-         .text, .input-container
-            float: left
-
-         .input-container
-            margin: .3em .25em
-
-            input
-               height: 1.9em
-               width: 16.5em
-               font-size: 2em
-
-         .text
-            font-size: 4em
-
-         @media screen and (max-width: 1080px)
-            .input-container
-               margin: .3em .25em
-
-            input
-               height: 1.9em
-               width: 12.5em
-               font-size: 2em
-            .text
-               font-size: 2.5em
-
-         @media screen and (max-width: 500px)
-            .text
-               font-size: 2em
+      .liney-container
+         border: #fff solid
+         border-width: 0 0 2px 0
 
       button
-         display: block
-         clear: both
-         margin: 4.5em auto 0 auto
-         border-radius 6px
+         cursor: pointer
+         padding: 15px
+         float: right
+         border: 0 none
+         background: transparent
+         color: #fff
 
          span
-            font-size: 1.5em
+            display: block
+            width: 20px
+            height: 20px
 
+            background: url("/images/search.png") no-repeat center center
+            background-size: 20px 20px
+
+      .input-container
+         margin-right: 10px + 100px
+
+         input
+            background: transparent
+            border: 0 none
+            color: #fff
+            text-shadow: 1px 1px 1px #000
+
+            font-size: 2em
+
+            width: 100%
+            padding: 5px
+
+            &:active,
+            &:focus
+               outline: 0 none
+
+   .your-location
+      border-top: 1px solid #bbb
+      border-bottom: 0 none;
+
+   .places
+      border: solid #bbb
+      border-width: 1px 0
+
+   .places,
+   .your-location
+      a
+         display: block
+         padding: 15px
+         cursor: pointer
+
+         img 
+            height: 35px
+            float: left
+            margin-left: 5px
+
+         span.name
+            display: block
+            font-weight: bold
+            margin-left: 60px
+
+         span.vic 
+            display: block
+            margin-left: 60px
+
+body.stream, body.search
    .poop-the-giraffe
       position: absolute
       bottom: 0
@@ -78,9 +94,9 @@ body.search
          background-position: -213px 6px
 
    .cityscape
-      position: absolute
 
-      bottom: 0
+      position: relative
+      margin-top: 250px
       height: 289px
       width: 100%
 

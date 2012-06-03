@@ -21,12 +21,19 @@ html
 
          != js("ext/parallaxHandler")
          != js("ext/mapHandler")
-         != js("ext/bindingHandlers")
-         != js("skin")
-   
+         
    - var viewFile = locals.attempts[locals.attempts.length - 1];
    - var viewDir = locals.root + "/";
    - var view = viewFile.replace(viewDir, "").replace(".jade", "");
    - var viewClass = view.replace(/\//g, "-");
    body(class=viewClass)
+      .location-header
+         h1 
+            a(href="/") goingon.at
+         
+         block heading
+            h2 Your location
+            
+         .clear
+
       block body

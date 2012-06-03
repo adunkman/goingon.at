@@ -1,8 +1,32 @@
 ko = window.ko
+socket = io.connect window.location.origin 
+
+quotes = ['Giraffes step forward with both right legs and both left legs.',
+   'Giraffes are not capable of making oral sounds. Funny that I am talking now!',
+   'We have tongues as long as 19 inches!',
+   'The tip of my tongue is black to prevent sunburn!',
+   'I live an average of 25 to 30 years.',
+   'Giraffes give birth and sleep standing up!']
+
+pickRandomQuote = ->
+   quote = 
+      text: quotes[Math.floor((Math.random() * quotes.length))]
+      user: { screen_name: 'poop' }
+
+   return quote
 
 viewModel = 
    instagrotos: ko.observable([])
    tweets: ko.observable([])
+   showMenu: ko.observable(false)
+   tweet: ko.observable(pickRandomQuote())
+   live_tweets: [],
+   selectNextTweet: ->
+      if this.live_tweets.length > 0 
+         t = this.live_tweets.shift()
+         this.tweet t
+      else 
+         this.tweet pickRandomQuote()
 
 viewModel.strips = ko.computed () ->
    items = (_.map viewModel.instagrotos(), (instagroto) -> 
@@ -26,4 +50,14 @@ fetchThings = (coords) ->
 
 $(document).ready () ->
    ko.applyBindings viewModel
+
+   setInterval ->
+      viewModel.selectNextTweet()
+   , 7500
+
+   socket.emit 'location', "#{window.coords.lat},#{window.coords.long}"
+
+   socket.on 'tweets', (data) -> 
+      viewModel.live_tweets = _.union viewModel.live_tweets, data
+
    fetchThings(window.coords)

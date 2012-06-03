@@ -1,0 +1,54 @@
+extends ../layout
+
+block title
+   | Events around you!
+
+block scripts
+   != js('lib/jquery')
+   != js('lib/knockout')
+   != js('lib/underscore')
+   != js('pages/events')
+   
+   script type='text/javascript'
+      //- var user = {};
+      
+      //- var updatePosition = function( position ){
+      //-    user.geolocation = [ position.coords.latitude, position.coords.longitude ];
+      //-    $( '#geolocation' ).val( user.geolocation.join( ',' ) );
+      //-    $( document ).trigger( 'position.update' )
+      //- }
+      //- var instagram_results = function( data ){ console.log( 'instagram', data ) };
+      //- var foursquare_results = function( data ){ console.log( 'places', data ) };
+      //- var places_results = function( data ){ console.log( 'places', data ) };
+      
+      //- var giraffa_camelopardalis = function( ){
+      //-    var data = { lat: user.geolocation[0], lon: user.geolocation[1] };
+      //-    $.getJSON( '/photos', data, instagram_results );
+      //-    $.getJSON( '/foursquare', data, foursquare_results );
+      //-    $.getJSON( '/places', data, places_results );
+      //-    console.log( JSON.stringify( data ) );
+      //- };
+      
+      //- $( function(){
+      //-    if( navigator.geolocation ){
+      //-       $( document ).on( 'position.update', giraffa_camelopardalis );
+      //-       navigator.geolocation.getCurrentPosition( updatePosition );
+      //-    } else {
+      //-       $( '#geolocation' ).val( "geolocation not available" );
+      //-    }
+      //- });
+
+block body
+   form#location_search( data-bind="submit: geocode_search" )
+      div#lat_long
+         label="User Location:"
+         input#geolocation( type="text", data-bind="value: query", size="45", placeholder="Your location?" )
+         input( type="submit", value="Search" )
+   div#tweets
+      
+   ul.places( data-bind="foreach: places" )
+      li( data-bind="click: $parent.place_li_click" )
+         img.name( data-bind="attr: { src: icon }" )
+         span.name( data-bind="text: name" )
+         span.vic( data-bind="text: vicinity")
+   

@@ -24,6 +24,6 @@ class MapImage
 
 window.mapImage = new MapImage('Fmjtd%7Cluua2g6anq%2C2s%3Do5-hfrn9')
 
-handlers.map = do () ->
-   return init: (element, valueAccessor) ->
-      $(element).css("background", "url(#{mapImage.build(39.109451,-94.572333)}) no-repeat center center")
+#handlers.map = do () ->
+ #  return init: (element, valueAccessor) ->
+ #     $(element).css("background", "url(#{mapImage.build(39.109451,-94.572333)}) no-repeat center center")

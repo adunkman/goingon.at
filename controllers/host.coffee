@@ -32,10 +32,12 @@ io.configure 'development', () ->
 
 # Services
 app.use require "../services/instagram"
+app.use require "../services/google"
 app.use require "../services/foursquare"
 app.use require "../services/geopoint"
 app.use require "../services/geocode"
 app.use require("../services/twitter")(io)
+
 
 # Controllers
 app.use require "./dashboard"

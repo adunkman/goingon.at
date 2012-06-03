@@ -1,0 +1,44 @@
+{
+   "base_url":"https://maps.googleapis.com/maps/api/place",
+   "key": "AIzaSyDmvGliUS1OmEHzFE6ADNhuwO-eVQ-znsw",
+   "placeSearch": {
+      "method": "search",
+      "defaults": {
+         "location": "38.980563,-94.520767",
+         "radius": 2000,
+         "sensor": "false",
+         "types":[
+            "airport",
+            "amusement_park",
+            "aquarium",
+            "art_gallery",
+            "bar",
+            "book_store",
+            "bowling_alley",
+            "cafe",
+            "campground",
+            "casino",
+            "church",
+            "library",
+            "mosque",
+            "movie_theater",
+            "museum",
+            "night_club",
+            "park",
+            "place_of_worship",
+            "school",
+            "shopping_mall",
+            "stadium",
+            "synagogue",
+            "university",
+            "zoo" ]
+      }
+   },
+   "placeDetails": {
+      "method":"details",
+      "defaults": {
+         "reference": "CoQBdAAAAPZ-6UNytDLaZFUi5g1y96CkLJlPj_jRCPf6zLvKVXAkUKOybedqYrORfFHOrPtORtPD0MSQP114JtwcVBEHsyz4WPGapHYFig9512Csq0z4jDKRTnAexRSRQI68OJVNSYZQrgvY4tK2Z--Miv0qFh0Cr1r1UJAQLvF7sg9kb2iKEhBNnRWiiAC9JP4x7iwnHTAAGhR9_nnY-1XWe8iw3SSyTG1Cm2fbqA",
+         "sensor": "false"
+      }
+   }
+}
