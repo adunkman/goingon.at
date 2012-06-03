@@ -28,12 +28,12 @@ html
    - var viewClass = view.replace(/\//g, "-");
    body(class=viewClass)
       .location-header
-         h1 goingon.at
+         h1 
+            a(href="/") goingon.at
          
-         if (typeof place !== "undefined")
-            a(data-bind="click: function () { showMenu(true); }")
-               h2.menu #{place.name}
-         else
+         block heading
             h2 Your location
+            
+         .clear
 
       block body

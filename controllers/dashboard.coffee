@@ -21,9 +21,11 @@ app.get "/location/instagrotos", (req, res, next) ->
       res.json photos.data
 
 app.get "/your/location/:lat,:long", (req, res) ->
-   res.render "stream", coords: 
-      lat: req.params.lat
-      long: req.params.long
+   res.render "stream", 
+      coords: 
+         lat: req.params.lat
+         long: req.params.long
+      place: false
 
 app.get "/events", (req, res) ->
    res.render "events"

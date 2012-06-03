@@ -25,13 +25,27 @@ h1, h2, h3, h4, h5, h6
 
    h1 
       float: left
-      color: #999
+      
+      a 
+         text-decoration: none
+         color: #777
+
 
    h2 
-      text-align: right
+      float: right
+
+      &.menu
+         cursor: pointer
+         padding-right: 30px
+         background: url("/images/list.png") no-repeat right 1px
+         background-size: 20px 20px
+
+.clear
+   clear: both
 
 .instagroto, .tweet, .place
    display: block
+   cursor: pointer
    text-decoration: none
    color: #444
 
