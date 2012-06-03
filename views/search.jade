@@ -7,13 +7,15 @@ block body
    .clear
    form#location_search( data-bind="submit: geocode_search" )
       div#lat_long
-         input#geolocation( type="text", data-bind="value: query", size="45", placeholder="Your location?" )
+         div.search
+            input#geolocation(type="text", data-bind="value: query", size="45", placeholder="Your location?" )
          button(type="submit") 
-            |->
+            span  
+               |go
       
       ol.places(data-bind="foreach: places" )
          li(data-bind="click: $parent.place_li_click" )
-            a.place
+            a.place.go
                img.name( data-bind="attr: { src: icon }" )
                span.name( data-bind="text: name" )
                span.vic( data-bind="text: vicinity")
