@@ -1,0 +1,46 @@
+extends ../layout
+
+block title
+   | Events around you!
+
+block scripts
+   != js('lib/jquery')
+   script type='text/javascript'
+      var user = {};
+      
+      var updatePosition = function( position ){
+         user.geolocation = [ position.coords.latitude, position.coords.longitude ];
+         $( '#geolocation' ).val( user.geolocation.join( ',' ) );
+         $( document ).trigger( 'position.update' )
+      }
+      var position_updated = function( ){ 
+         var data = { lat: user.geolocation[0], lon: user.geolocation[1] };
+         console.log( "data", data )
+         $.getJSON( '/photos', data, instagram_results );
+         $.getJSON( '/foursquare', data, places_results );
+         //$.getJSON( '/places', data, places_results );
+      }
+      
+      var instagram_results = function( data ){ console.log( data ) };
+      var places_results = function( data ){ console.log( data ) };
+      
+      var giraffa_camelopardalis = function( ){
+         $( document ).on( 'position.update', position_updated );
+         navigator.geolocation.getCurrentPosition( updatePosition );
+      };
+      
+      $( function(){
+         if(navigator.geolocation)
+            giraffa_camelopardalis();
+         else
+            $( '#geolocation' ).val( "geolocation not available" );
+      });
+
+block body
+   div#lat_long
+      label="User Location:"
+      input#geolocation( type="text", size="45" )
+   div#tweets
+   div#instagram
+   div#places
+      

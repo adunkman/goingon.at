@@ -16,7 +16,8 @@
       "restler": "2.0.1",
       "async": "0.1.22",
       "stylus": "0.27.1",
-      "oauth": "0.9.7"
+      "oauth": "0.9.7",
+      "node-pusher": "0.0.2"
    },
    "devDependencies": {},
    "optionalDependencies": {},
