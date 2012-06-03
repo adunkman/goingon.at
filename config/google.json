@@ -5,7 +5,7 @@
       "method": "search",
       "defaults": {
          "location": "38.980563,-94.520767",
-         "rankby":"distance",
+         "radius": 2000,
          "sensor": "false",
          "types":[
             "airport",

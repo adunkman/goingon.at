@@ -71,10 +71,19 @@ app.get "/place/:name/:id", ( req, res, next ) ->
    req.services.google.places "details",
       reference: req.params.id
       (error, place) ->
+         return next error if error
          p = place.result.geometry.location
-         console.log p
-         req.services.instagram.getImages p.lat, p.lng, (error, data) ->
-            res.json data
+
+         console.log place
+
+         res.render "stream", 
+            coords: { lat: p.lat, long: p.lng },
+            place: 
+               name: place.result.name
+               website: place.result.website
+               address: place.result.formatted_address
+               vicinity: place.result.vicinity
+               number: place.result.formatted_phone_number
 
 app.get "/geocode/:address", (req, res, next) ->
 	req.services.geocode.lookup req.params.address, 
