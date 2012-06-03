@@ -8,6 +8,7 @@ block append scripts
       window.coords = !{JSON.stringify(coords)};
 
 block body
+
    .place-info(data-bind="visible: showMenu")
       img(data-bind="attr: { src: window.mapImage.build(#{coords.lat}, #{coords.long}, { width: 300, height: 300, zoom: 15 }) }").map
 
@@ -25,11 +26,14 @@ block body
 
       .clear
       
-   ol(data-bind="foreach: strips")
+   ol(data-bind="foreach: strips").timeline
       li(data-bind="template: { name: type }")
 
    script(type="text/html", id="instagroto")
       a(data-bind="attr: { href: link }").instagroto
+         .tooltip
+            img(data-bind="attr: { src: window.mapImage.build(location.latitude, location.longitude, { width: 200, height: 200, zoom: 15 }) }").map
+
          .user
             img(data-bind="attr: { src: user.profile_picture }").profile
             h2(data-bind="text: (user.full_name != user.username) ? user.full_name + ' (' + user.username + ')' : user.username")
@@ -41,6 +45,9 @@ block body
 
    script(type="text/html", id="tweet")
       a(data-bind="attr: { href: 'http://twitter.com/' + from_user + '/status/' + id_str }").tweet
+         .tooltip(data-bind="with: geo")
+            img(data-bind="attr: { src: window.mapImage.build(coordinates[0], coordinates[1], { width: 200, height: 200, zoom: 15 }) }").map
+
          .user
             img(data-bind="attr: { src: profile_image_url}")
             h2(data-bind="text: from_user_name + ' (' + from_user + ')'")

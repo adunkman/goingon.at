@@ -8,7 +8,11 @@ body.stream
       border-bottom: 1px #aaa solid
 
       h1 
-         color: #777
+         float: left
+
+         a
+            text-decoration: none
+            color: #777
 
       h2 
          float: right
@@ -29,6 +33,7 @@ body.stream
       .map
          float: right
          padding: 1px 
+         margin-left: 20px
 
          background-color: #fff
          border: 1px #999 solid
@@ -61,16 +66,43 @@ body.stream
          .number
             background-image: url("/images/phone.png")
 
+         @media (max-width: 650px)
+            clear: both
+
    .instagroto, .tweet
       display: block
+      position: relative
       text-decoration: none
       color: #444
 
       background-gradient: #eee #ddd
       border-bottom: 1px #bbb solid
 
+      .tooltip
+         opacity: 0
+         transition: opacity 0.1s linear;
+
+         position: absolute
+         right: -80px
+         top: -40px
+
+         img
+            width: 100px
+            height: 100px
+
+            background-color: #eee
+            padding: 1px
+            border: 1px #bbb solid
+
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4)
+
+            transform: rotate(5deg)
+
       &:hover
          background-gradient: #ddd #ccc
+
+         .tooltip
+            opacity: 1
 
       &:active
          background-gradient: #ccc #ddd
@@ -131,3 +163,14 @@ body.stream
             size = 300px
             width: size
             height: size
+
+   .timeline
+      transition: margin-top 0.2s ease-out
+
+   @media (min-width: 702px)
+      .timeline
+         width: 700px
+         margin: 20px auto 0 auto
+
+         border: 1px #bbb solid
+         box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4)
