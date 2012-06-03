@@ -5,11 +5,12 @@ app.get "/", (req, res) ->
    res.send "Here is a homepage."
 
 app.get "/location/tweets", (req, res, next) ->
-   res.json [
-      { text: "blah blah" },
-      { text: "blah blah 2" },
-      { text: "blah blah 3" }
-   ]
+   lat = req.query.lat
+   long = req.query.long
+
+   req.services.twitter.getTweets lat, long, "0.25mi", (error, tweets) ->
+      return next error if error
+      res.json tweets
 
 app.get "/location/instagrotos", (req, res, next) ->
    lat = req.query.lat

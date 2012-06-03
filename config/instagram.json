@@ -2,6 +2,5 @@
 	"base-url": "https://api.instagram.com",
    "media-search" :  "/v1/media/search",
    "client-id": "09cf2731fd2a431cac586c481a368461",
-   "search-radius": "2000"
-
+   "search-radius": "402"
 }

@@ -15,10 +15,6 @@ class Twitter
       else
         callback null, data.results
 
-registerRoutes = (app) ->
-  app.get '/test/twitter', (req, res) ->
-    res.render 'twitter'     
-
 isWithinBounds = (bounds, p) ->
   withinX = p.x <= bounds.top_right.x && p.x >= bounds.bottom_left.x
   withinY = p.y <= bounds.top_right.y && p.y >= bounds.bottom_left.y
@@ -67,8 +63,13 @@ module.exports = (io) ->
       delete sockets[socket.id]
 
   app = express.createServer()
-  registerRoutes app
-  app.services or= {}
-  app.services.twitter = new Twitter()
-  
+
+  app.get '/test/twitter', (req, res) ->
+    res.render 'twitter'
+
+  app.use (req, res, next) ->
+    req.services or= {}
+    req.services.twitter = new Twitter()
+    next()
+
   return app
