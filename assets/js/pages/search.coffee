@@ -7,6 +7,9 @@ viewModel =
    places: ko.observable()
    query: ko.observable()
    events_goingonat: ko.observable()
+   location_click: () ->
+      console.log "lo, an empty method!"
+      
    place_li_click: ( el ) ->
       url = '/place/'+this.name+'/'+this.reference
       window.location = url
