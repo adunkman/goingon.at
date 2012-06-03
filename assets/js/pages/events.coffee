@@ -6,10 +6,10 @@ default_places = []
 viewModel = 
    places: ko.observable()
    query: ko.observable()
+   events_goingonat: ko.observable()
    place_li_click: ( el ) ->
-      url = '/places/details/'+this.reference
-      $.getJSON url, ( res ) -> 
-         console.log url, res
+      url = '/place/'+this.name+'/'+this.reference
+      window.location = url
       
    geocode_search: ( el ) ->
       url = '/places/search/'+encodeURI( viewModel.query() )
@@ -35,7 +35,7 @@ locateThatGuyOrGirl = () ->
       navigator.geolocation.getCurrentPosition ( position ) ->
          getJunk
             lat: position.coords.latitude, 
-            lon: position.coords.longitude
+            lng: position.coords.longitude
          
    else console.log "Woah man, you can't be located. You're off the grid. Mad props."
 

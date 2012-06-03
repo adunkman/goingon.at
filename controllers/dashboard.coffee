@@ -11,8 +11,8 @@ app.get "/events", (req, res) ->
 #=== SERVICES ===
 app.get "/photos", (req, res) ->
    lat = req.query.lat
-   lon = req.query.lon
-   req.services.instagram.getImages lat, lon, (error, data) ->
+   lng = req.query.lng
+   req.services.instagram.getImages lat, lng, (error, data) ->
       res.json data
 
 app.get "/foursquare", (req, res, next) ->
@@ -23,7 +23,7 @@ app.get "/foursquare", (req, res, next) ->
       res.json data
 
 app.get "/places", (req, res, next) ->
-   ll = req.query.lat+','+req.query.lon
+   ll = req.query.lat+','+req.query.lng
    req.services.google.places "search",
       location: ll
       (error, data) ->
@@ -45,6 +45,15 @@ app.get "/places/search/:address", (req, res, next) ->
             location: location.join ','
             (error, result) ->
                res.json result
+               
+app.get "/place/:name/:id", ( req, res, next ) ->
+   req.services.google.places "details",
+      reference: req.params.id
+      (error, place) ->
+         p = place.result.geometry.location
+         console.log p
+         req.services.instagram.getImages p.lat, p.lng, (error, data) ->
+            res.json data
 
 app.get "/geocode/:address", (req, res, next) ->
 	req.services.geocode.lookup req.params.address, 
