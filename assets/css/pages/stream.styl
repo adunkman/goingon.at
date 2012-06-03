@@ -1,7 +1,79 @@
-body//.stream
+@import "../lib/mixins"
+
+body.stream
+   .location-header
+      padding: 10px
+
+      background-gradient: #ccc #bbb
+      border-bottom: 1px #aaa solid
+
+      h1 
+         float: left
+         color: #999
+
+      h2 
+         text-align: right
+
+   .instagroto, .tweet
+      display: block
+      text-decoration: none
+      color: #444
+
+      background-gradient: #eee #ddd
+      border-bottom: 1px #bbb solid
+
+      &:hover
+         background-gradient: #ddd #ccc
+
+      &:active
+         background-gradient: #ccc #ddd
+
+   .tweet
+      .user
+         padding: 10px
+         size = 25px
+
+         img
+            float: left
+            width: size
+            height: size
+
+         h2
+            margin-left: size + 10px
+            line-height: size
+
+      p
+         padding: 0 10px 10px 10px
+         margin: 0
 
    .instagroto
-      img
+      .user
+         padding: 10px
+         size = 25px
+
+         img.profile
+            float: left
+            width: size
+            height: size
+
+         h2
+            margin-left: size + 10px
+            height: size
+
+      .caption
+         p
+            padding: 0 10px 10px 10px
+            margin: 0
+
+      img.gram
+         display: block
+         clear: both 
+         margin: 0 auto 10px auto
+         padding: 1px
+
+         background-color: #fff
+         border: 1px #999 solid
+
          size = 600px
          width: size
          height: size
@@ -10,5 +82,3 @@ body//.stream
             size = 300px
             width: size
             height: size
-
-

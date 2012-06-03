@@ -1,5 +1,8 @@
 extends layout
 
+block append scripts
+   != js("pages/search")
+
 block body
    .search-bar
       form(action="/lattylongie", method="get")
