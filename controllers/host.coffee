@@ -28,9 +28,11 @@ app.use express.static __dirname + "/../public"
 
 # Services
 app.use require "../services/instagram"
+app.use require "../services/google"
 app.use require "../services/foursquare"
 app.use require "../services/geopoint"
 app.use require "../services/geocode"
+
 
 # Controllers
 app.use require "./dashboard"
