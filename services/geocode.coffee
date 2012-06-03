@@ -8,24 +8,33 @@ class GeoCode
       @googleApi = 'http://maps.googleapis.com/maps/api/geocode/json'
 
    lookup: (address, callback) ->
-      rest.get(@apiServer,
+      rest.get(@googleApi,
          query:
-            inFormat: 'kvp'
-            outFormat: 'json'
-            thumbMaps: false
-            location: address)
+            address: address
+            sensor: false)
       .on "complete", (result) =>
-         callback null, @extractLookupResult result
+         callback null, @extractLookupResults result
+
+   extractLookupResults: (results) ->
+      results = results.results
+      console.log results
+      if results.length == 0 then null
+      else 
+         primary: @extractLookupResult(results[0])
+         alts:
+            @extractLookupResult(result) for result in results[1..results.length]
 
    extractLookupResult: (result) ->
-      locations = result.results[0].locations
-
-      if locations.length == 0 then null
-      else
-         lat: locations[0].latLng.lat
-         lng: locations[0].latLng.lng
-         alts:
-            {lat: loc.latLng.lat, lng: loc.latLng.lng} for loc in locations[1..locations.length]
+      address: result.formatted_address
+      lat: result.geometry.location.lat
+      lng: result.geometry.location.lng
+      boundingBox:
+         northeast:
+            lat: result.geometry.viewport.northeast.lat
+            lng: result.geometry.viewport.northeast.lng
+         southwest:
+            lat: result.geometry.viewport.southwest.lat
+            lng: result.geometry.viewport.southwest.lng
 
    reverse: (lat, lng, callback) -> 
       rest.get(@googleApi,
