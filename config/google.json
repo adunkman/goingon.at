@@ -1,19 +1,19 @@
 {
-  "base_url":"https://maps.googleapis.com/maps/api/place",
-  "key": "AIzaSyDmvGliUS1OmEHzFE6ADNhuwO-eVQ-znsw",
-  "placeSearch": {
-    "method": "search",
-    "defaults": {
-      "location": "38.980563,-94.520767",
-      "radius": "500",
-      "sensor": "false"
-    }
-  },
-  "placeDetails": {
-    "method":"details",
-    "defaults": {
-      "reference": "CoQBdAAAAPZ-6UNytDLaZFUi5g1y96CkLJlPj_jRCPf6zLvKVXAkUKOybedqYrORfFHOrPtORtPD0MSQP114JtwcVBEHsyz4WPGapHYFig9512Csq0z4jDKRTnAexRSRQI68OJVNSYZQrgvY4tK2Z--Miv0qFh0Cr1r1UJAQLvF7sg9kb2iKEhBNnRWiiAC9JP4x7iwnHTAAGhR9_nnY-1XWe8iw3SSyTG1Cm2fbqA",
-      "sensor": "false"
-    }
-  }
+   "base_url":"https://maps.googleapis.com/maps/api/place",
+   "key": "AIzaSyDmvGliUS1OmEHzFE6ADNhuwO-eVQ-znsw",
+   "placeSearch": {
+      "method": "search",
+      "defaults": {
+         "location": "38.980563,-94.520767",
+         "radius": "500",
+         "sensor": "false"
+      }
+   },
+   "placeDetails": {
+      "method":"details",
+      "defaults": {
+         "reference": "CoQBdAAAAPZ-6UNytDLaZFUi5g1y96CkLJlPj_jRCPf6zLvKVXAkUKOybedqYrORfFHOrPtORtPD0MSQP114JtwcVBEHsyz4WPGapHYFig9512Csq0z4jDKRTnAexRSRQI68OJVNSYZQrgvY4tK2Z--Miv0qFh0Cr1r1UJAQLvF7sg9kb2iKEhBNnRWiiAC9JP4x7iwnHTAAGhR9_nnY-1XWe8iw3SSyTG1Cm2fbqA",
+         "sensor": "false"
+      }
+   }
 }
