@@ -2,7 +2,7 @@ express = require "express"
 app = module.exports = express.createServer()
 
 app.get "/", (req, res) ->
-   res.send "Here is a homepage."
+   res.render "search"
 
 app.get "/foursquare", (req, res, next) ->
    req.services.foursquare.get "/v2/venues/trending", { ll: "38.980563,-94.520767" }, 
