@@ -2,7 +2,7 @@ express = require "express"
 app = module.exports = express.createServer()
 
 app.get "/", (req, res) ->
-   res.send "Here is a homepage."
+   res.render "search"
 
 app.get "/location/tweets", (req, res, next) ->
    lat = req.query.lat
