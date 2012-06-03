@@ -7,8 +7,12 @@ $(document).ready(function() {
   });
 
   socket.on('tweets', function (data) {
-    console.log(data);
-    $('#tweets').prepend($('<li/>').text(data.text));
+    for (x in data) {
+      var tweet = data[x]
+      
+      console.log(tweet)
+      $('#tweets').prepend($('<li/>').text(tweet.text));
+    }
   });
 
 });

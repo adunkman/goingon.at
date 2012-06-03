@@ -1,6 +1,7 @@
 express = require 'express'
 LocationStreamer = require './location_streamer'
 geocode = require('./geocode').geocode
+rest = require('restler')
 
 registerRoutes = (app) ->
   app.get '/test/twitter', (req, res) ->
@@ -31,35 +32,40 @@ handleTweets = (socket, location, data) ->
       y: location.primary.boundingBox.northeast.lat
 
   if isWithinBounds bounds, point
-    socket.emit 'tweets', data
+    socket.emit 'tweets', [data]
+
+fetchPastTweets = (location, callback) ->
+  rest.get 'http://search.twitter.com/search.json', 
+    query:
+      q: '*'
+      geocode: "#{location.primary.lat},#{location.primary.lng},.25km"
+  .on 'complete', (data) ->
+    callback null, data.results
 
 module.exports = (io) -> 
   sockets = {}
   streamer = new LocationStreamer()
 
+  streamer.on 'streamdata', (data) ->
+    for k,v of sockets
+      v.get 'location', (err, location) ->
+        handleTweets v, location, data
+
   io.on 'connection', (socket) ->
-
-    streamer.on 'streamdata', (data) ->
-      
-      console.log data
-
-      for k,v of sockets
-        v.get 'location', (err, location) ->
-          handleTweets v, location, data
-
+    #get some starter tweets
     socket.on 'location', (location) ->
-
       if location?
         geocode.lookup location, (err, result) ->
           socket.set 'location', result
+          fetchPastTweets result, (err, data) ->
+            socket.emit 'tweets', data
           streamer.addLocation result         
           sockets[socket.id] = socket
       else
         delete sockets[socket.id]
 
-
     socket.on 'disconnect', ->
-      #need to stop monitoring location if there's nobody interested.
+      delete sockets[socket.id]
 
   app = express.createServer()
 
