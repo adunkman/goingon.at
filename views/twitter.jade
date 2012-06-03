@@ -2,6 +2,7 @@ block append scripts
    #meta(http-equiv="refresh", content="1")
 
    script(src='/socket.io/socket.io.js')
+   != js("lib/underscore")
    != js("lib/knockout")
    != js("lib/jquery")
    != js("twitter")
@@ -10,6 +11,6 @@ block append scripts
 block body
 
   #poop
-    #speech
-      p(data-bind="text: tweet().text") 
-      span.tweeter(data-bind="text: tweet().user.screen_name") 
+    #speech(data-bind="with: tweet()")
+      p(data-bind="text: text")
+      span.tweeter(data-bind="text: (user == undefined) ? user.screen_name : 'poop'") 
