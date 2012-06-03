@@ -13,53 +13,52 @@ isWithinBounds = (bounds, p) ->
 
   return withinX && withinY
 
-handleTweets = (socket, location, tweets) ->
-  
-  console.log tweets
+handleTweets = (socket, location, data) ->
 
-  #what is tweets?
+  if !data.geo 
+    return
 
   point = 
-    x: data.geo.coordinates[0]
-    y: data.geo.coordinates[1]
+    x: data.geo.coordinates[1]
+    y: data.geo.coordinates[0]
 
   bounds = 
     bottom_left: 
-      x: location.boundingBox.southwest.lng
-      y: location.boundingBox.southwest.lat
+      x: location.primary.boundingBox.southwest.lng
+      y: location.primary.boundingBox.southwest.lat
     top_right: 
-      x: location.boundingBox.northeast.lng
-      y: location.boundingBox.northeast.lat
+      x: location.primary.boundingBox.northeast.lng
+      y: location.primary.boundingBox.northeast.lat
 
   if isWithinBounds bounds, point
     socket.emit 'tweets', data
 
-
 module.exports = (io) -> 
-  clients = []
+  sockets = {}
   streamer = new LocationStreamer()
 
   io.on 'connection', (socket) ->
-    callback = (data) ->
-      for client in clients
-        client.get 'location', (location) ->
-          handleTweets socket, location, data
 
-    streamer.on 'data', callback
+    streamer.on 'streamdata', (data) ->
+      
+      console.log data
+
+      for k,v of sockets
+        v.get 'location', (err, location) ->
+          handleTweets v, location, data
 
     socket.on 'location', (location) ->
-      socket.set 'location', location
 
       if location?
         geocode.lookup location, (err, result) ->
-          streamer.addLocation location
-          if clients.indexOf socket == -1
-            clients.push socket
+          socket.set 'location', result
+          streamer.addLocation result         
+          sockets[socket.id] = socket
       else
-        clients.remove socket
-    
+        delete sockets[socket.id]
+
+
     socket.on 'disconnect', ->
-      clients.remove socket
       #need to stop monitoring location if there's nobody interested.
 
   app = express.createServer()

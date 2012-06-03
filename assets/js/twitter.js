@@ -6,11 +6,8 @@ $(document).ready(function() {
     socket.emit('location', $('#location').val());
   });
 
-  $('#stop').click(function() {
-    socket.emit('location', null);
-  });
-
   socket.on('tweets', function (data) {
+    console.log(data);
     $('#tweets').prepend($('<li/>').text(data.text));
   });
 

@@ -14,12 +14,17 @@ class LocationStreamer extends EventEmitter
     @listening = false
     @stream = undefined
 
-  addLocation: (location) ->
-    lat = location.lat
-    lng = location.lng
-    key = "#{lng},#{lat}"
-    
-    @locations.push key
+  addLocation: (location) ->   
+    lat = location.primary.boundingBox.southwest.lat
+    lng = location.primary.boundingBox.southwest.lng
+
+    lat2 = location.primary.boundingBox.northeast.lat
+    lng2 = location.primary.boundingBox.northeast.lng
+
+    key = "#{lng},#{lat},#{lng2},#{lat2}"
+  
+    if @locations.indexOf(key) == -1
+      @locations.push key
 
     if !@listening
       @start()
@@ -31,16 +36,11 @@ class LocationStreamer extends EventEmitter
   removeLocation: (key) -> 
     index = @locations.indexOf key
     @locations.splice index, 1
-    console.log @locations
     @stop() if @locations.length == 0
   
   stop: ->
-    console.log 'stopping streamer'
-    
     @stream.destroy() if @stream
-    
     @stream = undefined
-
     @listening = false
     
   start: ->
@@ -53,8 +53,7 @@ class LocationStreamer extends EventEmitter
       @stream = s     
       
       s.on 'data', (data) =>
-        console.log data
-        @emit 'data', data
+        @emit 'streamdata', data
 
       s.on 'end', (r) =>
         console.log 'stream ended'

@@ -1,6 +1,7 @@
 express = require "express"
 app = module.exports = express.createServer()
 rest = require "restler"
+util = require "util"
 
 class GeoCode
    constructor: () ->
@@ -17,7 +18,6 @@ class GeoCode
 
    extractLookupResults: (results) ->
       results = results.results
-      console.log results
       if results.length == 0 then null
       else 
          primary: @extractLookupResult(results[0])
