@@ -13,4 +13,4 @@ block body
   #poop
     #speech(data-bind="with: tweet()")
       p(data-bind="text: text")
-      span.tweeter(data-bind="text: (user == undefined) ? user.screen_name : 'poop'") 
+      span.tweeter(data-bind="text: user.screen_name") 
