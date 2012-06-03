@@ -10,8 +10,8 @@ class Twitter
         q: '*'
         geocode: "#{lat},#{long},#{range}"
     .on 'complete', (data) ->
-      if (result instanceof Error)
-        callback result, []
+      if (data instanceof Error)
+        callback data, []
       else
         callback null, data.results
 
