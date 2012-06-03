@@ -11,19 +11,31 @@ body.search
       background-color: #888
    
    #lat_long
+      position: relative
 
-      #geolocation
-         font-size: 1.8em;
-         line-height: 1.8em;
-         width: 80%;
-         margin-left: 5px;
-         padding: 0 5px
+      div.search
+         padding-right: 20px;
+         
+         #geolocation
+            font-size: 1.8em
+            line-height: 1.8em
+            padding-right: 35px
+            border: none;
+            width: 100%
       button
-         font-size: 1.8em;
-         line-height: 1.8em;
-         width: 15%;
-         margin-right: 5px;
-         float: right;
+         position: absolute
+         font-size: 1.8em
+         line-height: 1.8em
+         margin-right: 5px
+         float: right
+         top: 0px
+         right: 0px
+         width: 56px
+         span
+            background: transparent url('/images/go.png') no-repeat 0px 4px;
+            text-indent: -10000px;
+            display: block
+            height: 45px
 
    .places
       a
