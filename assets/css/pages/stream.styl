@@ -1,6 +1,29 @@
 @import "../lib/mixins"
 
 body.stream
+   background-color: transparent
+
+   #poop 
+      position: absolute;
+      top: -355px
+      right: -212px
+      height: 608px;
+      width: 200px;
+      z-index: -1
+      background: transparent url('/images/giraffe-upside.png') no-repeat;
+
+   #speech
+      span
+         text-align: center;
+         width: 210px;
+         display: block;
+
+         &.tweeter
+            font-size: 14px;
+      p
+         margin: 6px 12px 3px 17px;
+         font-size: 15px;
+   
    .place-info
       padding: 20px
 
@@ -92,6 +115,12 @@ body.stream
          background-gradient: #ccc #ddd
 
    .tweet
+      &.live 
+         padding-top: 10px
+
+         h1
+            margin: 0 10px 10px 10px 
+
       .user
          padding: 10px
          size = 25px
@@ -150,6 +179,7 @@ body.stream
 
    .timeline
       transition: margin-top 0.2s ease-out
+      position: relative
 
    @media (min-width: 602px)
       .timeline

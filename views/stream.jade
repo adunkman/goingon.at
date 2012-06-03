@@ -1,6 +1,7 @@
 extends layout
 
 block append scripts 
+   script(src='/socket.io/socket.io.js')
    != js("pages/stream")
    != js("mapImage")
 
@@ -32,9 +33,17 @@ block body
                a(href="tel:#{place.number}")= place.number
 
       .clear
-     
-   ol(data-bind="foreach: strips").timeline
-      li(data-bind="template: { name: type }")
+   
+   div.timeline
+
+      #poop
+      span(data-bind="with: tweet()")
+         a(data-bind="attr: { href: 'http://twitter.com/' }").tweet.live
+            h1 Live Stream
+            p(data-bind="text: text")
+
+      ol(data-bind="foreach: strips")
+         li(data-bind="template: { name: type }")
 
    script(type="text/html", id="instagroto")
       a(data-bind="attr: { href: link }").instagroto
