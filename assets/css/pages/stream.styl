@@ -31,6 +31,7 @@ body.stream
             background-repeat: no-repeat
             background-position: left 1px
             background-size: 20px 20px
+            text-overflow: ellipsis
 
             a
                color: #fff
@@ -58,6 +59,7 @@ body.stream
 
       .tooltip
          opacity: 0
+         display: none
          transition: opacity 0.1s linear;
 
          position: absolute
@@ -76,10 +78,13 @@ body.stream
 
             transform: rotate(5deg)
 
+         @media (min-width: 822px)
+            display: block
+
       &:hover
          background-gradient: #ddd #ccc
 
-         @media (min-width: 922px)
+         @media (min-width: 822px)
             .tooltip
                opacity: 1
 
@@ -134,7 +139,7 @@ body.stream
          background-color: #fff
          border: 1px #999 solid
 
-         size = 600px
+         size = 310px
          width: size
          height: size
 
@@ -146,9 +151,9 @@ body.stream
    .timeline
       transition: margin-top 0.2s ease-out
 
-   @media (min-width: 702px)
+   @media (min-width: 602px)
       .timeline
-         width: 700px
+         width: 600px
          margin: 20px auto 0 auto
 
          border: 1px #bbb solid
