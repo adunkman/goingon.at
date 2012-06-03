@@ -3,25 +3,31 @@ extends layout
 block append scripts
    != js("pages/search")
 
+block heading
+
 block body
-   .clear
-   form#location_search( data-bind="submit: geocode_search" )
-      div#lat_long
-         div.search
-            input#geolocation(type="text", data-bind="value: query", size="45", placeholder="Your location?" )
-         button(type="submit") 
-            span  
-               |go
-      
-      ol.places(data-bind="foreach: places" )
-         li(data-bind="click: $parent.place_li_click" )
-            a.place.go
-               img.name( data-bind="attr: { src: icon }" )
-               span.name( data-bind="text: name" )
-               span.vic( data-bind="text: vicinity")
+   form(data-bind="submit: geocode_search").search
+      .liney-container
+         button(type="submit"): span
+
+         .input-container
+            input(type="text", data-bind="value: query", placeholder="Enter a location…")
+   
+   .your-location
+      a(data-bind="click: location_click")
+         img.name(src="/images/location.png")
+         span.name None of these
+         span.vic Use your current location
+
+   ol.places(data-bind="foreach: places" )
+      li(data-bind="click: $parent.place_li_click" )
+         a.place.go
+            img.name( data-bind="attr: { src: icon }" )
+            span.name( data-bind="text: name" )
+            span.vic( data-bind="text: vicinity")
 
    .cityscape
-      .background(data-bind="parallax: { x: { 'background-position-x': 0.06 }, y: { 'height': -0.02 } }")
-      .middleground(data-bind="parallax: { x: { 'background-position-x': 0.03 }, y: { 'height': -0.01 } }")
-      .poop-the-giraffe(data-bind="parallax: { x: { 'left': 0.02 }, y: { 'height': -0.005 } }")
+      .background(data-bind="parallax: { x: { 'background-position-x': 0.06 } }")
+      .middleground(data-bind="parallax: { x: { 'background-position-x': 0.03 } }")
+      .poop-the-giraffe(data-bind="parallax: { x: { 'left': 0.02 } }")
       .foreground(data-bind="parallax: { x: { 'background-position-x': 0.01 } }")
