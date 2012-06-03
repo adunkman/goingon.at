@@ -10,11 +10,13 @@ html
       block styles
          != css("skin")
          != css("pages/search")
+         link(href="http://fonts.googleapis.com/css?family=Voltaire", rel="stylesheet", type="text/css")
 
       block scripts
          != js("lib/jquery")
          != js("lib/knockout")
-         != js("ext/bindingHandlers")
+         != js("ext/parallaxHandler")
+         != js("ext/mapHandler")
          != js("skin")
    
    - var viewFile = locals.attempts[locals.attempts.length - 1];
