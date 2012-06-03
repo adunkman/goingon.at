@@ -8,14 +8,16 @@ class Twitter
     rest.get 'http://search.twitter.com/search.json', 
       query:
         q: '*'
-        geocode: "#{lat},#{long},.25km"
+        geocode: "#{lat},#{long},#{range}"
     .on 'complete', (data) ->
-      callback null, data.results
+      if (result instanceof Error)
+        callback result, []
+      else
+        callback null, data.results
 
 registerRoutes = (app) ->
   app.get '/test/twitter', (req, res) ->
     res.render 'twitter'     
-  return app
 
 isWithinBounds = (bounds, p) ->
   withinX = p.x <= bounds.top_right.x && p.x >= bounds.bottom_left.x
@@ -47,12 +49,11 @@ module.exports = (io) ->
   streamer = new LocationStreamer()
 
   streamer.on 'streamdata', (data) ->
-    for k,v of sockets
-      v.get 'location', (err, location) ->
-        handleTweets v, location, data
+    for k,socket of sockets
+      socket.get 'location', (err, location) ->
+        handleTweets socket, location, data
 
   io.on 'connection', (socket) ->
-    #get some starter tweets
     socket.on 'location', (location) ->
       if location?
         geocode.lookup location, (err, result) ->
@@ -66,8 +67,8 @@ module.exports = (io) ->
       delete sockets[socket.id]
 
   app = express.createServer()
-
+  registerRoutes app
   app.services or= {}
   app.services.twitter = new Twitter()
-
-  return registerRoutes app
+  
+  return app
