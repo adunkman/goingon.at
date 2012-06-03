@@ -7,7 +7,7 @@ viewModel =
    places: ko.observable()
    query: ko.observable()
    place_li_click: ( el ) ->
-      url = '/places/details/'+self.reference
+      url = '/places/details/'+this.reference
       $.getJSON url, ( res ) -> 
          console.log url, res
       
