@@ -5,12 +5,18 @@ body.stream
 
    #poop 
       position: absolute;
+      display: none
+
       top: -325px
       right: -212px
       height: 608px;
       width: 200px;
       z-index: -1
+
       background: transparent url('/images/giraffe-upside.png') no-repeat;
+
+      @media (min-width: 1100px)
+         display: block
 
    #speech
       span
@@ -116,6 +122,7 @@ body.stream
 
    .tweet
       &.live 
+         cursor: default
          padding-top: 10px
          background-gradient: #ccc #ddd
 
