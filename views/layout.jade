@@ -12,12 +12,14 @@ html
          != css("skin")
          != css("pages/stream")
          != css("pages/search")
+         link(href="http://fonts.googleapis.com/css?family=Voltaire", rel="stylesheet", type="text/css")
 
       block scripts
          != js("lib/jquery")
          != js("lib/knockout")
+         != js("ext/parallaxHandler")
+         != js("ext/mapHandler")
          != js("lib/underscore")
-
          != js("ext/bindingHandlers")
          != js("skin")
    
