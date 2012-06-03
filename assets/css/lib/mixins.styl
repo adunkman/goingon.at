@@ -17,7 +17,7 @@ hex(decimal)
 argb(color, alpha = 1)
   unquote('#') + hex(alpha * 255) + hex(red(color)) + hex(green(color)) + hex(blue(color))
 
-box-shadow(shadow)
+box-shadow(shadow...)
    -webkit-box-shadow: shadow
    -moz-box-shadow: shadow
    box-shadow: shadow
@@ -39,6 +39,9 @@ transition(args...)
    -o-transition: args
    -ms-transition: args
    transition: args
+
+transform(args...)
+   -webkit-transform: args;
 
 border-radius(radius)
    -webkit-border-radius: radius

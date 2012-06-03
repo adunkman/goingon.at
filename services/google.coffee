@@ -27,7 +27,6 @@ class Google
          else null
          
       params = _.extend defaults, {key: this.config.key}, params
-      console.log "url = "+url,  params
       
       this.get url, 
          query: params, 
