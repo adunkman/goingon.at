@@ -1,0 +1,34 @@
+extends layout
+
+block append scripts 
+   != js("pages/stream")
+
+   script
+      window.coords = !{JSON.stringify(coords)};
+
+block body
+   .location-header
+      h1 goingon.at
+      h2 Your location
+
+   ol(data-bind="foreach: strips")
+      li(data-bind="template: { name: type }")
+
+   script(type="text/html", id="instagroto")
+      a(data-bind="attr: { href: link }").instagroto
+         .user
+            img(data-bind="attr: { src: user.profile_picture }").profile
+            h2(data-bind="text: (user.full_name != user.username) ? user.full_name + ' (' + user.username + ')' : user.username")
+
+         img(data-bind="attr: { src: images.standard_resolution.url }").gram
+
+         .caption(data-bind="with: caption")
+            p(data-bind="text: text")
+
+   script(type="text/html", id="tweet")
+      a(data-bind="attr: { href: 'http://twitter.com/' + from_user + '/status/' + id_str }").tweet
+         .user
+            img(data-bind="attr: { src: profile_image_url}")
+            h2(data-bind="text: from_user_name + ' (' + from_user + ')'")
+
+         p(data-bind="text: text")
