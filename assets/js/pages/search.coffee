@@ -6,7 +6,13 @@ default_places = []
 viewModel = 
    places: ko.observable()
    query: ko.observable()
+   position: ko.observable(null)
    events_goingonat: ko.observable()
+   location_click: () ->
+      coords = viewModel.position()
+      url = "/your/location/#{coords.lat},#{coords.lng}"
+      window.location = url
+      
    place_li_click: ( el ) ->
       url = '/place/'+this.name+'/'+this.reference
       window.location = url
@@ -28,6 +34,7 @@ clean_places = ( results )->
 getJunk = ( position ) ->
    $.getJSON '/places', position, ( res ) ->
       default_places = clean_places( res )
+      viewModel.position(position)
       viewModel.places default_places
       
 locateThatGuyOrGirl = () ->
