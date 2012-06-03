@@ -5,26 +5,49 @@ rest = require "restler"
 class GeoCode
    constructor: () ->
       @apiServer = 'http://open.mapquestapi.com/geocoding/v1/address'
+      @googleApi = 'http://maps.googleapis.com/maps/api/geocode/json'
 
    lookup: (address, callback) ->
-      rest.get(@apiServer,
+      rest.get(@googleApi,
          query:
-            inFormat: 'kvp'
-            outFormat: 'json'
-            thumbMaps: false
-            location: address)
+            address: address
+            sensor: false)
       .on "complete", (result) =>
-         callback null, @extractResult result
+         callback null, @extractLookupResults result
 
-   extractResult: (result) ->
-      locations = result.results[0].locations
-
-      if locations.length == 0 then null
-      else
-         lat: locations[0].latLng.lat
-         lng: locations[0].latLng.lng
+   extractLookupResults: (results) ->
+      results = results.results
+      console.log results
+      if results.length == 0 then null
+      else 
+         primary: @extractLookupResult(results[0])
          alts:
-            {lat: loc.latLng.lat, lng: loc.latLng.lng} for loc in locations[1..locations.length]
+            @extractLookupResult(result) for result in results[1..results.length]
+
+   extractLookupResult: (result) ->
+      address: result.formatted_address
+      lat: result.geometry.location.lat
+      lng: result.geometry.location.lng
+      boundingBox:
+         northeast:
+            lat: result.geometry.viewport.northeast.lat
+            lng: result.geometry.viewport.northeast.lng
+         southwest:
+            lat: result.geometry.viewport.southwest.lat
+            lng: result.geometry.viewport.southwest.lng
+
+   reverse: (lat, lng, callback) -> 
+      rest.get(@googleApi,
+         query:
+            sensor: false
+            latlng: "#{lat},#{lng}")
+      .on "complete", (result) =>
+         callback null, @extractReverseResult result
+
+   extractReverseResult: (result) ->
+      if result.results.length == 0 then null
+      else
+         result.results[0].formatted_address
 
 geocode = new GeoCode()
 
