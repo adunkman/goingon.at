@@ -15,6 +15,17 @@ html
          link(href="http://fonts.googleapis.com/css?family=Voltaire", rel="stylesheet", type="text/css")
 
       block scripts
+         if app.settings.env == 'production'
+            script(type="text/javascript")
+               var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+               document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+               </script>
+               <script type="text/javascript">
+               try{ 
+               var pageTracker = _gat._getTracker("UA-32325249-1");
+               pageTracker._trackPageview();
+               } catch(err) {} 
+
          != js("lib/jquery")
          != js("lib/knockout")
          != js("lib/underscore")
