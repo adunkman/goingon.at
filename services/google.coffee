@@ -17,18 +17,21 @@ class Google
          else callback(null, result)
    
    places: ( callType, params, callback ) ->
-      url = this.config.base_url+"/"+callType+"/json"
-      #url = "http://shitfuck.com/"+callType+"/json"
+      conf = this.config;
+      url = conf.base_url+"/"+callType+"/json"
       switch callType
-         when "search" then defaults = this.config.placeSearch.defaults
-         when "detail" then defaults = this.config.placeDetails.defaults
+         when "search"
+            defaults = _.clone( conf.placeSearch.defaults )
+            defaults.types = defaults.types.join '|' 
+         when "details" then defaults = conf.placeDetails.defaults
          else null
+         
       params = _.extend defaults, {key: this.config.key}, params
+      
       this.get url, 
          query: params, 
          (error, data) ->
-            result = {error:error, url:url, params:params, data:data }
-            callback error, result
+            callback error, data
 
 google = new Google()
 app.use (req, res, next) ->

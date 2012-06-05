@@ -1,0 +1,127 @@
+@import "../lib/mixins"
+
+body.search
+
+   form.search
+      display: block
+      padding: 20px 20px 25px 20px
+
+      color: #fff
+      background-gradient: #222 #333
+      text-shadow: 1px 1px 1px #000
+
+      .liney-container
+         border: #fff solid
+         border-width: 0 0 2px 0
+
+      button
+         cursor: pointer
+         padding: 15px
+         float: right
+         border: 0 none
+         background: transparent
+         color: #fff
+
+         span
+            display: block
+            width: 20px
+            height: 20px
+
+            background: url("/images/search.png") no-repeat center center
+            background-size: 20px 20px
+
+      .input-container
+         margin-right: 10px + 50px
+
+         input
+            background: transparent
+            border: 0 none
+            color: #fff
+            text-shadow: 1px 1px 1px #000
+            -webkit-appearance: none
+
+            font-size: 2em
+
+            width: 100%
+            padding: 5px
+
+            &:active,
+            &:focus
+               outline: 0 none
+
+            @media (-webkit-min-device-pixel-ratio: 2)
+               font-size: 1.7em
+
+   .your-location
+      border-top: 1px solid #bbb
+      border-bottom: 0 none;
+
+   .places
+      border: solid #bbb
+      border-width: 1px 0
+
+   .places,
+   .your-location
+      a
+         display: block
+         padding: 15px
+         cursor: pointer
+
+         img 
+            height: 35px
+            float: left
+            margin-left: 5px
+
+         span.name
+            display: block
+            font-weight: bold
+            margin-left: 60px
+
+         span.vic 
+            display: block
+            margin-left: 60px
+
+body.stream, body.search
+   .poop-the-giraffe
+      position: absolute
+      bottom: 0
+      left: 10%
+
+      width: 211px
+      height: 511px
+
+      background: url("/images/poop-the-giraffe.png") no-repeat
+
+      transition: background-position-y 0.15s linear
+
+      &:active
+         background-position: -213px 6px
+
+   .cityscape
+
+      position: relative
+      margin-top: 250px
+      height: 289px
+      width: 100%
+
+      .foreground,
+      .middleground,
+      .background
+         position: absolute
+
+         bottom: 0
+         width: 100%
+
+         background: url("/images/cityscape.png") repeat-x
+
+      .foreground
+         height: 240px
+         background-position: 30px 0
+
+      .middleground
+         height: 292px
+         background-position: 10px -241px
+
+      .background
+         height: 340px
+         background-position: 110px -489px

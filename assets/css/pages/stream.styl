@@ -1,0 +1,224 @@
+@import "../lib/mixins"
+
+body.stream
+   background-color: transparent
+
+   #poop 
+      position: absolute;
+      display: none
+
+      top: -325px
+      right: -212px
+      height: 608px;
+      width: 200px;
+      z-index: -1
+
+      background: transparent url('/images/giraffe-upside.png') no-repeat;
+
+      @media (min-width: 1100px)
+         display: block
+
+   #speech
+      span
+         text-align: center;
+         width: 210px;
+         display: block;
+
+         &.tweeter
+            font-size: 14px;
+      p
+         margin: 6px 12px 3px 17px;
+         font-size: 15px;
+   
+   .place-info
+      padding: 20px
+
+      color: #fff
+      background-gradient: #222 #333
+      text-shadow: 1px 1px 1px #000
+
+      .map
+         float: right
+         padding: 1px 
+         margin-left: 20px
+
+         background-color: #fff
+         border: 1px #999 solid
+
+         width: 150px
+         height: 150px
+
+      h1
+         font-size: 1.4em
+         line-height: 1.5em
+         margin-bottom: 10px
+
+      .things
+         .website, .address, .number
+            padding-left: 30px
+            line-height: 30px
+            background-repeat: no-repeat
+            background-position: left 1px
+            background-size: 20px 20px
+            text-overflow: ellipsis
+
+            a
+               color: #fff
+
+         .website
+            background-image: url("/images/globe.png")
+
+         .address
+            background-image: url("/images/map.png")
+         
+         .number
+            background-image: url("/images/phone.png")
+
+         @media (max-width: 650px)
+            clear: both
+
+   .instagroto, .tweet
+      display: block
+      position: relative
+      text-decoration: none
+      color: #444
+
+      background-gradient: #eee #ddd
+      border-bottom: 1px #bbb solid
+
+      .tooltip
+         opacity: 0
+         display: none
+         transition: opacity 0.1s linear;
+
+         position: absolute
+         right: -80px
+         top: -40px
+
+         img
+            width: 100px
+            height: 100px
+
+            background-color: #eee
+            padding: 1px
+            border: 1px #bbb solid
+
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4)
+
+            transform: rotate(5deg)
+
+         @media (min-width: 822px)
+            display: block
+
+      &:hover
+         background-gradient: #ddd #ccc
+
+         @media (min-width: 822px)
+            .tooltip
+               opacity: 1
+
+      &:active
+         background-gradient: #ccc #ddd
+
+   .tweet
+      &.live 
+         cursor: default
+         padding-top: 10px
+         background-gradient: #ccc #ddd
+
+         h1
+            margin: 0 10px 10px 10px 
+
+      .user
+         padding: 10px
+         size = 25px
+
+         img
+            float: left
+            width: size
+            height: size
+
+         h2
+            margin-left: size + 10px
+            line-height: size
+            text-overflow: ellipsis;
+
+      p
+         padding: 0 10px 10px 10px
+         margin: 0
+
+   .instagroto
+      .user
+         padding: 10px
+         size = 25px
+
+         img.profile
+            float: left
+            width: size
+            height: size
+
+         h2
+            margin-left: size + 10px
+            line-height: size
+            text-overflow: ellipsis;
+
+      .caption
+         p
+            padding: 0 10px 10px 10px
+            margin: 0
+
+      img.gram
+         display: block
+         clear: both 
+         margin: 0 auto 10px auto
+         padding: 1px
+
+         background-color: #fff
+         background-image: url( '/images/loading.gif' )
+         background-repeat: no-repeat
+         background-position: center center
+         border: 1px #999 solid
+
+         size = 310px
+         width: size
+         height: size
+
+         @media (-webkit-min-device-pixel-ratio: 2)
+            size = 300px
+            width: size
+            height: size
+
+   .timeline
+      transition: margin-top 0.2s ease-out
+      position: relative
+
+   @media (min-width: 602px)
+      .timeline
+         width: 600px
+         margin: 20px auto 0 auto
+
+         border: 1px #bbb solid
+         box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4)
+
+.footer
+   background-color: #3B86C7
+
+   .restart
+      width: 300px
+      margin: 0 auto
+
+      text-align: center
+      font-weight: bold
+      font-size: 3em
+      padding-bottom: 100px;
+      text-shadow 1px 1px 3px rgba(0, 0, 0, 0.4)
+
+      a
+         color: #e9e9e9
+         text-decoration: none
+
+         &:hover
+            color: #fff
+
+         &:active
+            margin-left: -5px

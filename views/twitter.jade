@@ -1,0 +1,16 @@
+block append scripts
+   #meta(http-equiv="refresh", content="1")
+
+   script(src='/socket.io/socket.io.js')
+   != js("lib/underscore")
+   != js("lib/knockout")
+   != js("lib/jquery")
+   != js("twitter")
+   != css("pages/twitter")
+
+block body
+
+  #poop
+    #speech(data-bind="with: tweet()")
+      p(data-bind="text: text")
+      span.tweeter(data-bind="text: user.screen_name") 
