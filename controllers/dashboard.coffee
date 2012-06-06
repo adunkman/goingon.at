@@ -4,19 +4,37 @@ app = module.exports = express.createServer()
 app.get "/", (req, res) ->
    res.render "search"
 
+app.get "/new", (req, res) ->
+   res.render "new"
+      hasCoords: false
+
+app.get "/new/:place", (req, res) ->
+   place = req.params.place
+
+   req.services.geocode.lookup place, (error, data) ->
+      res.render "new",
+         coords:
+            lat: data.primary.lat,
+            lng: data.primary.lng
+         hasCoords: true
+
+app.post "/new", (req, res) ->
+   place = req.body.place
+   res.redirect("/new/#{place}")
+
 app.get "/location/tweets", (req, res, next) ->
    lat = req.query.lat
-   long = req.query.long
+   lng = req.query.lng
 
-   req.services.twitter.getTweets lat, long, "0.25mi", (error, tweets) ->
+   req.services.twitter.getTweets lat, lng, "0.25mi", (error, tweets) ->
       return next error if error
       res.json tweets
 
 app.get "/location/instagrotos", (req, res, next) ->
    lat = req.query.lat
-   long = req.query.long
+   lng = req.query.lng
 
-   req.services.instagram.getImages lat, long, (error, photos) ->
+   req.services.instagram.getImages lat, lng, (error, photos) ->
       return next error if error
       res.json photos.data
 
@@ -84,12 +102,19 @@ app.get "/place/:name/:id", ( req, res, next ) ->
                address: place.result.formatted_address || place.result.vicinity
                number: place.result.formatted_phone_number
 
+app.get "/geocode/reverse", (req, res, next) ->
+   lat = req.query.lat
+   lng = req.query.lng
+
+   req.services.geocode.reverse lat, lng, (error, data) ->
+      return next error if error
+      res.json data
+
 app.get "/geocode/:address", (req, res, next) ->
 	req.services.geocode.lookup req.params.address, 
 		(error, data) ->
 			return next error if error
 			res.json data
-
 
 app.get "/geocode", (req, res, next) ->
 	req.services.geocode.reverse "38.980563", "-94.520767",
