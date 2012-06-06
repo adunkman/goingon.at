@@ -37,6 +37,7 @@ class GeoCode
             lng: result.geometry.viewport.southwest.lng
 
    reverse: (lat, lng, callback) -> 
+      console.log "Reverse looking up : #{lat}, #{lng}"
       rest.get(@googleApi,
          query:
             sensor: false

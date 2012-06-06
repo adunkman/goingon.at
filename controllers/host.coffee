@@ -15,6 +15,7 @@ app.configure "production", () ->
    app.use express.errorHandler()
 
 # Middleware
+app.use express.bodyParser()
 app.use express.cookieParser()
 app.use express.session 
 	secret: "aksdf2342awjefna3fnoiasdfojasofoadngfiha34isfh"

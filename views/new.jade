@@ -1,0 +1,74 @@
+extends layout
+
+block append scripts 
+   script(src='/socket.io/socket.io.js')
+   != js("pages/new")
+   != js("mapImage")
+
+   if hasCoords
+      script
+         window.coords = !{JSON.stringify(coords)}
+
+block heading
+   h2 
+      a(data-bind="click: function () { showMenu(!showMenu()); }") Your location
+
+block body
+
+   .place-info(data-bind="visible: showMenu")
+      img(data-bind="attr: { src: window.mapImage.build(location().lat, location().lng, { width: 300, height: 300, zoom: 15 }) }").map
+
+      h1 Your place 
+      h2(data-bind="text: address")
+
+      form(action="/new", method="POST")
+         input(type="text", name="place")
+         input(type="submit") Go
+
+      ul.things 
+      .clear
+
+   .timeline
+      #poop
+      span(data-bind="with: tweet()")
+         a.tweet.live
+            h1 Streaming Live
+            p(data-bind="text: text")
+
+      ol(data-bind="foreach: strips")
+         li(data-bind="template: { name: type }")
+
+   .cityscape
+      .background(data-bind="parallax: { x: { 'background-position-x': 0.06 }}")
+      .middleground(data-bind="parallax: { x: { 'background-position-x': 0.03 }}")
+      .poop-the-giraffe(data-bind="parallax: { x: { 'left': 0.02 }}")
+      .foreground(data-bind="parallax: { x: { 'background-position-x': 0.01 } }")
+
+   .footer
+      .restart 
+            a(href="/") &larr; Start Over
+
+   script(type="text/html", id="instagroto")
+      a(data-bind="attr: { href: link }").instagroto
+         .tooltip
+            img(data-bind="attr: { src: window.mapImage.build(location.latitude, location.longitude, { width: 200, height: 200, zoom: 15 }) }").map
+
+         .user
+            img(data-bind="attr: { src: user.profile_picture }").profile
+            h2(data-bind="text: (user.full_name != user.username) ? user.full_name + ' (' + user.username + ')' : user.username")
+
+         img(data-bind="attr: { src: images.standard_resolution.url }").gram
+
+         .caption(data-bind="with: caption")
+            p(data-bind="text: text")
+
+   script(type="text/html", id="tweet")
+      a(data-bind="attr: { href: 'http://twitter.com/' + from_user + '/status/' + id_str }").tweet
+         .tooltip(data-bind="with: geo")
+            img(data-bind="attr: { src: window.mapImage.build(coordinates[0], coordinates[1], { width: 200, height: 200, zoom: 15 }) }").map
+
+         .user
+            img(data-bind="attr: { src: profile_image_url}")
+            h2(data-bind="text: from_user_name + ' (' + from_user + ')'")
+
+         p(data-bind="text: text")

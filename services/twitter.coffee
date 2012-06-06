@@ -5,6 +5,10 @@ rest = require('restler')
 
 class Twitter 
   getTweets: (lat, long, range, callback) ->
+    if arguments.length < 4
+      callback = arguments[2]
+      range = ".25mi"
+
     rest.get 'http://search.twitter.com/search.json', 
       query:
         q: '*'
