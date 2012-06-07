@@ -22,9 +22,9 @@ block body
    ol.places(data-bind="foreach: places" )
       li(data-bind="click: $parent.place_li_click" )
          a.place.go
-            img.name( data-bind="attr: { src: icon }" )
-            span.name( data-bind="text: name" )
-            span.vic( data-bind="text: vicinity")
+            img.name(data-bind="attr: { src: icon }" )
+            span.name(data-bind="text: name" )
+            span.vic(data-bind="text: vicinity")
 
    .cityscape
       .background(data-bind="parallax: { x: { 'background-position-x': 0.06 } }")
