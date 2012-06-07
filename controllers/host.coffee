@@ -1,5 +1,4 @@
 express = require "express"
-redisStore = require "connect-redis"
 port = process.env.PORT || 3000
 app = express.createServer()
 
@@ -18,11 +17,7 @@ app.configure "production", () ->
 app.use express.cookieParser()
 app.use express.session 
 	secret: "aksdf2342awjefna3fnoiasdfojasofoadngfiha34isfh"
-	store: 
-		if process.env.NODE_ENV == "PRODUCTION"
-			new redisStore() 
-		else
-			null
+	store: null
 app.use require("connect-assets")()
 app.use express.static __dirname + "/../public"
 
