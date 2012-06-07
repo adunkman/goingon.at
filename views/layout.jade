@@ -17,6 +17,7 @@ html
       block scripts
 
       script(type="text/javascript")
+         var _gaq = _gaq || [];
          _gaq.push(['_setAccount', 'UA-32325249-1']);
          _gaq.push(['_trackPageview']);
 
@@ -26,12 +27,12 @@ html
           var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
          })();
 
-         != js("lib/jquery")
-         != js("lib/knockout")
-         != js("lib/underscore")
+      != js("lib/jquery")
+      != js("lib/knockout")
+      != js("lib/underscore")
 
-         != js("ext/parallaxHandler")
-         != js("ext/mapHandler")
+      != js("ext/parallaxHandler")
+      != js("ext/mapHandler")
 
    - var viewDir = locals.root + "/";
    - var view = locals.filename.replace(viewDir, "").replace(".jade", "");
