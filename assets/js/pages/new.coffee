@@ -44,6 +44,26 @@ viewModel.strips = ko.computed () ->
 viewModel.location.subscribe () ->
    fetchThings()
 
+loadMap = () ->
+   navigator.geolocation.getCurrentPosition (position) ->
+      currentLocation = new google.maps.LatLng position.coords.latitude, position.coords.longitude
+
+      map = new google.maps.Map document.getElementById("map_picker"), 
+         center: currentLocation
+         zoom: 13
+         mapTypeId: google.maps.MapTypeId.ROADMAP
+
+      circle = new google.maps.Circle
+         center: currentLocation
+         editable: true
+         radius: 750
+         map: map
+
+      google.maps.event.addListener map, 'click', (e) ->
+         map.panTo e.latLng 
+         viewModel.location lat: e.latLng.lat(), lng: e.latLng.lng()
+         circle.setCenter e.latLng
+
 fetchThings = (coords) ->
    $.getJSON "/location/instagrotos", viewModel.location(), (photos) ->
       viewModel.instagrotos photos
@@ -67,4 +87,5 @@ locateThatGuyOrGirl = () ->
 
 $(document).ready () ->
    ko.applyBindings viewModel
+   loadMap()
    locateThatGuyOrGirl()

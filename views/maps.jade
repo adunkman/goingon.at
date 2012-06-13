@@ -1,0 +1,36 @@
+extends layout
+
+block append scripts
+   script(src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBe5mbtFpKdwA9sfYnTXnXjBYoNOd5gd8U&sensor=true")
+   script
+      $(document).ready(function() {
+         navigator.geolocation.getCurrentPosition(function (position) {
+            var currentLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+            var map = new google.maps.Map(document.getElementById("map_canvas"), {
+               center: currentLocation,
+               zoom: 13,
+               mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+
+            var circle = new google.maps.Circle({
+               center: currentLocation,
+               editable: true,
+               radius: 750,
+               map: map
+            });
+
+            google.maps.event.addListener(map, 'click', function(e) {
+               var latitude = e.latLng.lat();
+               var longitude = e.latLng.lng();
+
+               map.panTo(e.latLng);
+               circle.setCenter(e.latLng);
+            });
+         });
+      });
+
+block heading
+
+block body
+    #map_canvas(style="width: 400px; height: 400px;")

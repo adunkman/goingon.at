@@ -1,6 +1,7 @@
 extends layout
 
 block append scripts 
+   script(src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBe5mbtFpKdwA9sfYnTXnXjBYoNOd5gd8U&sensor=true")
    script(src='/socket.io/socket.io.js')
    != js("pages/new")
    != js("mapImage")
@@ -16,7 +17,7 @@ block heading
 block body
 
    .place-info(data-bind="visible: showMenu")
-      img(data-bind="attr: { src: window.mapImage.build(location().lat, location().lng, { width: 300, height: 300, zoom: 15 }) }").map
+      #map_picker.map
 
       h1 Your place 
       h2(data-bind="text: address")

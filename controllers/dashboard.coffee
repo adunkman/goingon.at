@@ -7,7 +7,9 @@ app.get "/", (req, res) ->
 app.get "/new", (req, res) ->
    res.render "new"
       hasCoords: false
-
+app.get "/map", (req, res) ->
+   res.render "maps"
+   
 app.get "/new/:place", (req, res) ->
    place = req.params.place
 
